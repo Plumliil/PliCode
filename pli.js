@@ -77,7 +77,14 @@ class PliArr {
 
 
 
-// 小工具
+// 工具
+// 随机数生成
+function createRdm(min, max, Integer = 1) {
+    if (Integer === -1) return parseFloat((Math.random() * (max - min) + min).toFixed(2))
+    min = Math.ceil(min);
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
 // 获取当前时间
 function nowTime(format) {
     let time = new Date();
@@ -134,5 +141,6 @@ function nowTime(format) {
 }
 module.exports = {
     PliArr,
+    createRdm,
     nowTime
 }
