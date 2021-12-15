@@ -1,17 +1,17 @@
 
-![](https://gitee.com/Plumliil/images/raw/master/MdPicture/author.png)
+<!-- ![](https://gitee.com/Plumliil/images/raw/master/MdPicture/author.png) -->
 
-<!-- <div style="
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;"
+<div
+    align=center
+     style="text-align-center"
     >
-    <img src="https://gitee.com/Plumliil/images/raw/master/MdPicture/author.png" >
+    <img src="https://gitee.com/Plumliil/images/raw/master/MdPicture/author.png"  style="border-radius:50%">
+</div>
+<div align=center>
     <a href="https://www.plumli.xyz" style="font-size:30px;font-weight:700;text-decoration: none;" title="PlumLi">PlumLi</a>
 </div>
- -->
 <!-- <h1 style="text-align:center">常用函数库</h1> -->
+
 # 常用函数库
 
 ## 安装
