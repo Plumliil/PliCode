@@ -47,9 +47,74 @@ class PliArr {
 }
 // 图片操作
 
+// 图片压缩
+{// window.onload = function () {
+//     const upload = document.getElementById('upload')
+//     upload.onchange = uploadImage
+// }
 
+// // 图片上传
+// function uploadImage(event) {
+//     const file = event.target.files
+//     createImage(file[0], function (img) {
+//         createCanvas(img, 1200)
+//     })
+//     event.target.value = ''
+// }
 
+// // 生成图片副本
+// function createImage(file, callback) {
+//     const reader = new FileReader()
+//     reader.readAsDataURL(file)
+//     reader.onload = function () {
+//         const img = new Image()
+//         img.src = reader.result
+//         callback(img)
+//     }
+// }
 
+// // 生成画布
+// function createCanvas(img, max) {
+//     const cvs = document.createElement('canvas')
+//     const ctx = cvs.getContext('2d')
+//     let width = img.naturalWidth || 400
+//     let height = img.naturalHeight || 400
+//     const ratio = width / height
+//     if (width > max) {
+//         width = max
+//         height = width / ratio
+//     }
+//     cvs.width = width
+//     cvs.height = height
+//     img.onload = function () {
+//         const base64 = compressImage(cvs, ctx, img, width, height, max)
+//         console.log(base64)
+//     }
+// }
+
+// // 图片质量压缩
+// function compressImage(cvs, ctx, img, width, height, max) {
+//     // 绘制图片
+//     ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, width, height)
+//     const quality = width > max ? 0.5 : width > 600 ? 0.6 : 1
+//     const newImageData = cvs.toDataURL('image/png', quality)
+//     downloadImage(newImageData)
+//     console.log(newImageData);
+//     return newImageData
+// }
+
+// // 图片下载
+// function downloadImage(newImageData) {
+//     const link = document.createElement('a')
+//     link.href = newImageData
+//     link.download = 'img.png'
+//     link.target = '_blank'
+//     document.body.appendChild(link)
+//     link.click()
+//     document.body.removeChild(link)
+// }
+
+}
 
 
 
@@ -78,15 +143,8 @@ class PliArr {
 
 
 // 工具
-// 随机数生成
-function createRdm(min, max, Integer = 1) {
-    if (Integer === -1) return parseFloat((Math.random() * (max - min) + min).toFixed(2))
-    min = Math.ceil(min);
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
 // 获取当前时间
-function nowTime(format) {
+function pliNowTime(type) {
     let time = new Date();
     let yyyy = time.getFullYear()
     let mm = time.getMonth()
@@ -94,7 +152,7 @@ function nowTime(format) {
     let h = time.getHours()
     let m = time.getMinutes()
     let s = time.getSeconds()
-    switch (format) {
+    switch (type) {
         case 'dd/mm/yyyy':
             return `${dd}/${mm}/${yy}`
         case 'mm/dd/yyyy':
@@ -139,8 +197,64 @@ function nowTime(format) {
             return `${yyyy}-${mm}-${dd}`
     }
 }
-module.exports = {
+// 随机数生成
+function pliCreateRdm(min = 0, max = 100, Integer = 1) {
+    if (Integer === -1) return parseFloat((Math.random() * (max - min) + min).toFixed(2))
+    min = Math.ceil(min);
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+// 随机颜色生成 参数type 默认rgb 可选hex
+function pliColorRdm(type = 'rgb') {
+    let min = 0;
+    let max = 255;
+    let r = Math.floor(Math.random() * (max - min) + min);
+    let g = Math.floor(Math.random() * (max - min) + min);
+    let b = Math.floor(Math.random() * (max - min) + min);
+    if (type === 'hex') return pliRgb_Hex(`(${r},${g},${b})`, 'hex');
+    return `(${r},${g},${b})`
+}
+// 颜色转换 参数rgb 格式限定(r,g,b) 或 r,g,b
+function pliRgb_Hex(data, type) {
+    const reg = type === 'hex' ? /^\((\d{1,3}),(\d{1,3}),(\d{1,3})\)$/ : /^#(\w{2})(\w{2})(\w{2})$/;
+    let arr = reg.exec(data);
+    if (!arr) return new Error('请检查参数传入是否正确')
+
+    function toHex(x) {
+        return ("0" + parseInt(x).toString(16)).slice(-2);
+    }
+
+    function toRgb(x) {
+        return parseInt(x, 16);
+    }
+    // swich case
+    const result = {
+        hex: ("#" + toHex(arr[1]) + toHex(arr[2]) + toHex(arr[3])).toUpperCase(),
+        rgb: `(${toRgb(arr[1])},${toRgb(arr[2])},${toRgb(arr[3])})`
+    };
+    return result[type] ?
+        result[type] :
+        new Error(`${type} 格式出错 请输入正确格式`)
+}
+// 文件批量分类
+// 按后缀分类
+
+
+
+
+
+
+
+
+
+
+
+
+
+export {
     PliArr,
-    createRdm,
-    nowTime
+    pliNowTime,
+    pliCreateRdm,
+    pliColorRdm,
+    pliRgb_Hex
 }
