@@ -48,71 +48,71 @@ class PliArr {
 // 图片操作
 
 // 图片压缩
-{// window.onload = function () {
-//     const upload = document.getElementById('upload')
-//     upload.onchange = uploadImage
-// }
+{ // window.onload = function () {
+    //     const upload = document.getElementById('upload')
+    //     upload.onchange = uploadImage
+    // }
 
-// // 图片上传
-// function uploadImage(event) {
-//     const file = event.target.files
-//     createImage(file[0], function (img) {
-//         createCanvas(img, 1200)
-//     })
-//     event.target.value = ''
-// }
+    // // 图片上传
+    // function uploadImage(event) {
+    //     const file = event.target.files
+    //     createImage(file[0], function (img) {
+    //         createCanvas(img, 1200)
+    //     })
+    //     event.target.value = ''
+    // }
 
-// // 生成图片副本
-// function createImage(file, callback) {
-//     const reader = new FileReader()
-//     reader.readAsDataURL(file)
-//     reader.onload = function () {
-//         const img = new Image()
-//         img.src = reader.result
-//         callback(img)
-//     }
-// }
+    // // 生成图片副本
+    // function createImage(file, callback) {
+    //     const reader = new FileReader()
+    //     reader.readAsDataURL(file)
+    //     reader.onload = function () {
+    //         const img = new Image()
+    //         img.src = reader.result
+    //         callback(img)
+    //     }
+    // }
 
-// // 生成画布
-// function createCanvas(img, max) {
-//     const cvs = document.createElement('canvas')
-//     const ctx = cvs.getContext('2d')
-//     let width = img.naturalWidth || 400
-//     let height = img.naturalHeight || 400
-//     const ratio = width / height
-//     if (width > max) {
-//         width = max
-//         height = width / ratio
-//     }
-//     cvs.width = width
-//     cvs.height = height
-//     img.onload = function () {
-//         const base64 = compressImage(cvs, ctx, img, width, height, max)
-//         console.log(base64)
-//     }
-// }
+    // // 生成画布
+    // function createCanvas(img, max) {
+    //     const cvs = document.createElement('canvas')
+    //     const ctx = cvs.getContext('2d')
+    //     let width = img.naturalWidth || 400
+    //     let height = img.naturalHeight || 400
+    //     const ratio = width / height
+    //     if (width > max) {
+    //         width = max
+    //         height = width / ratio
+    //     }
+    //     cvs.width = width
+    //     cvs.height = height
+    //     img.onload = function () {
+    //         const base64 = compressImage(cvs, ctx, img, width, height, max)
+    //         console.log(base64)
+    //     }
+    // }
 
-// // 图片质量压缩
-// function compressImage(cvs, ctx, img, width, height, max) {
-//     // 绘制图片
-//     ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, width, height)
-//     const quality = width > max ? 0.5 : width > 600 ? 0.6 : 1
-//     const newImageData = cvs.toDataURL('image/png', quality)
-//     downloadImage(newImageData)
-//     console.log(newImageData);
-//     return newImageData
-// }
+    // // 图片质量压缩
+    // function compressImage(cvs, ctx, img, width, height, max) {
+    //     // 绘制图片
+    //     ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, width, height)
+    //     const quality = width > max ? 0.5 : width > 600 ? 0.6 : 1
+    //     const newImageData = cvs.toDataURL('image/png', quality)
+    //     downloadImage(newImageData)
+    //     console.log(newImageData);
+    //     return newImageData
+    // }
 
-// // 图片下载
-// function downloadImage(newImageData) {
-//     const link = document.createElement('a')
-//     link.href = newImageData
-//     link.download = 'img.png'
-//     link.target = '_blank'
-//     document.body.appendChild(link)
-//     link.click()
-//     document.body.removeChild(link)
-// }
+    // // 图片下载
+    // function downloadImage(newImageData) {
+    //     const link = document.createElement('a')
+    //     link.href = newImageData
+    //     link.download = 'img.png'
+    //     link.target = '_blank'
+    //     document.body.appendChild(link)
+    //     link.click()
+    //     document.body.removeChild(link)
+    // }
 
 }
 
@@ -146,12 +146,12 @@ class PliArr {
 // 获取当前时间
 function pliNowTime(type) {
     let time = new Date();
-    let yyyy = time.getFullYear()
-    let mm = time.getMonth()
-    let dd = time.getDay()
-    let h = time.getHours()
-    let m = time.getMinutes()
-    let s = time.getSeconds()
+    let yyyy = time.getFullYear();
+    let mm = time.getMonth() < 10 ? `0${time.getMonth()}` : time.getMonth();
+    let dd = time.getDay() < 10 ? `0${time.getDay()}` : time.getDay();
+    let h = time.getHours() < 10 ? `0${time.getHours()}` : time.getHours();
+    let m = time.getMinutes();
+    let s = time.getSeconds() < 10 ? `0${time.getSeconds()}` : time.getSeconds();
     switch (type) {
         case 'dd/mm/yyyy':
             return `${dd}/${mm}/${yy}`
@@ -194,7 +194,7 @@ function pliNowTime(type) {
         case 'h:m':
             return `${h}:${m}`
         default:
-            return `${yyyy}-${mm}-${dd}`
+            return `${yyyy}-${mm}-${dd} ${h}:${m}:${s}`
     }
 }
 // 随机数生成
@@ -238,17 +238,37 @@ function pliRgb_Hex(data, type) {
 }
 // 文件批量分类
 // 按后缀分类
-
-
-
-
-
-
-
-
-
-
-
+// 浏览器语音识别
+class PliRecorder {
+    constructor(el) {
+        let recognition={};
+        let result='xxxxxx';
+        // console.log(el);
+        this.recognition = new webkitSpeechRecognition();
+        recognition.lang = 'cmn-Hans-CN'; //普通话 (中国大陆)
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.onresult = function (event) {
+            result =''; 
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                result += event.results[i][0].transcript;
+            }
+            // el.innerHTML = result
+            console.log(result);
+        }
+        el.innerHTML=result
+        console.log(recognition);
+    }
+    start(){
+        console.log('start');
+        console.log(this.recognition);
+        return this.recognition.start();
+    }
+    stop(){
+        console.log('stop');
+        return this.recognition.stop();
+    }
+}
 
 
 export {
@@ -256,5 +276,6 @@ export {
     pliNowTime,
     pliCreateRdm,
     pliColorRdm,
-    pliRgb_Hex
+    pliRgb_Hex,
+    PliRecorder
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>开始</button>
+    <h1></h1>
+    <script type="module">
+        import * as Pli from './pli.js';
+        // console.log(Pli);
+        const button=document.querySelector('button');
+        const h1=document.querySelector('h1');
+        const recorder=new Pli.PliRecorder(h1);
+        // console.log(recorder);
+        let flag=true;
+        // console.log(recorder.start);
+        button.addEventListener('click',()=>{
+            if(flag){
+                recorder.start();
+                flag=!flag;
+            }else{
+                recorder.stop();
+                flag=!flag;
+            }
+        })
+        
+    </script>
+</body>
+
+</html>
