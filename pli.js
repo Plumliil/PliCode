@@ -271,7 +271,7 @@ function pliCopy(obj){
     return res
 }
 
-// typeOf判断不同数据类型
+// pliTypeOf判断不同数据类型
 function pliTypeOf(obj){
     let res=Object.prototype.toString.call(obj);
     res=res.split(' ')[1].slice(0,-1).toLowerCase();

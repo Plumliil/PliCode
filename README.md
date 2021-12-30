@@ -35,6 +35,27 @@
 
 ## 工具
 
+### 获取数据类型
+#### 描述
+通过调用方法来判断某个值的类型
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `pliTypeOf(value)`
+参数 | value:需要判断的值 
+返回值 | 返回获取对应的数据类型 
+#### 示例
+~~~javascript
+let a = {},
+    b = [],
+    c = null,
+    d;
+console.log(pliTypeOf(a)) // object
+console.log(pliTypeOf(b)) // array
+console.log(pliTypeOf(c)) // null
+console.log(pliTypeOf(d)) // undefined
+~~~
+
 ### 获取当前时间
 #### 描述
 通过调用方法来获取当前时间
