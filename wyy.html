@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 80%;
+            height: 700px;
+            margin-top: 30px;
+            /* background-color: cadetblue; */
+            position: relative;
+        }
+
+        .container .dian {
+            position: absolute;
+            z-index: 10;
+            left: 46%;
+            top: 50%;
+        }
+
+        .container .dian span {
+            border: 1px solid white;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        .container #box {
+            position: absolute;
+            width: 40%;
+            height: 300px;
+        }
+
+        .container .one {
+            background-color: skyblue;
+            z-index: 1;
+            transform: translateX(0%);
+            /* opacity: 1; */
+        }
+
+        .container .two {
+            background-color: darkseagreen;
+            z-index: 1;
+            transform: translateX(75%);
+            z-index: 2;
+            /* opacity: 0; */
+        }
+
+        .container .three {
+            background-color: pink;
+            z-index: 1;
+            transform: translateX(150%);
+            /* opacity: 0; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="box" class="one"></div>
+        <div id="box" class="two"></div>
+        <div id="box" class="three"></div>
+        <div class="dian">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+        </div>
+    </div>
+    <script>
+        
+    </script>
+</body>
+
+</html>

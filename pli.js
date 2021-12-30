@@ -1,3 +1,7 @@
+// import {
+//     resolve
+// } from "path/posix";
+
 // 数组操作
 class PliArr {
     constructor(arr) {
@@ -115,30 +119,7 @@ class PliArr {
     // }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 // 动画操作
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -238,44 +219,90 @@ function pliRgb_Hex(data, type) {
 }
 // 文件批量分类
 // 按后缀分类
-// 浏览器语音识别
-class PliRecorder {
-    constructor(el) {
-        let recognition={};
-        let result='xxxxxx';
-        // console.log(el);
-        this.recognition = new webkitSpeechRecognition();
-        recognition.lang = 'cmn-Hans-CN'; //普通话 (中国大陆)
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.onresult = function (event) {
-            result =''; 
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-                result += event.results[i][0].transcript;
-            }
-            // el.innerHTML = result
-            console.log(result);
+// 用于后端获取图片，视频，音频链接后的分类
+function pliFilType(file) {
+    const videoReg = /[\w\/\.]*?\.(AVI|FLV|F4V|FLC|MP4|MKV|M4V|WMV|WEBM)$/gi;
+    const audioReg = /[\w\/\.]*?\.(APE|AU|MP3|MID|MOD|OGG|WMA)$/gi;
+    const wordReg = /[\w\/\.]*?\.(TXT|DOC|WPS|DOCX|XLS|XLSX|PDF)$/gi;
+    const photoReg = /[\w\/\.]*?\.(GIF|JPG|PNG|PSD|BMP|JPEG|PSD|jpeg)/gi;
+    const compressedReg = /[\w\/\.]*?\.(RAR|ZIP|7Z)$/gi;
+    let flag = true;
+    let files = {
+        video: [],
+        audio: [],
+        word: [],
+        photo: [],
+        compressed: [],
+        other: []
+    }
+
+    for (let i = 0; i < file.length; i++) {
+        if (audioReg.test(file[i])) {
+            files['audio'].push(file[i])
+        } else if (videoReg.test(file[i])) {
+            files['video'].push(file[i])
+        } else if (wordReg.test(file[i])) {
+            files['word'].push(file[i])
+        } else if (photoReg.test(file[i])) {
+            files['photo'].push(file[i])
+        } else if (compressedReg.test(file[i])) {
+            files['compressed'].push(file[i])
+        } else {
+            files['other'].push(file[i])
         }
-        el.innerHTML=result
-        console.log(recognition);
     }
-    start(){
-        console.log('start');
-        console.log(this.recognition);
-        return this.recognition.start();
-    }
-    stop(){
-        console.log('stop');
-        return this.recognition.stop();
-    }
+    return files
+}
+// 浏览器语音识别
+
+// Promise封装sleep函数 返回一个Promise对象
+function pliSleep(delay = 1000) {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(), delay);
+    })
 }
 
+// 深拷贝
+function pliCopy(obj){
+    let res = obj instanceof Array ? [] : {}
+    for (const [k,v] of Object.entries(obj)) {
+        res[k] = typeof v === 'object' ? PliCopy(v) : v
+    }
+    return res
+}
 
+// typeOf判断不同数据类型
+function pliTypeOf(obj){
+    let res=Object.prototype.toString.call(obj);
+    res=res.split(' ')[1].slice(0,-1).toLowerCase();
+    return res
+}
+
+// let pl={
+//     name:'lyh',
+//     age:20,
+//     hobbies:['eat','play','sleep'],
+//     obj:{
+//         one:'1',
+//         two:'2',
+//         three:'3'
+//     }
+
+// };
+// console.log(PliCopy(pl));
+// console.log(PliCopy(pl));
+// let newRes=PliCopy(pl)
+
+// newRes.hobbies=['eat'];
+// console.log('pl',pl);
+// console.log(newRes);
 export {
     PliArr,
     pliNowTime,
     pliCreateRdm,
     pliColorRdm,
     pliRgb_Hex,
-    PliRecorder
+    pliFilType,
+    plisleep,
+    pliTypeOf
 }
