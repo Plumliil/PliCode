@@ -29,9 +29,67 @@
 ### 元素求和
 ### 元素排序
 ### 数组扁平化
-## 图片方法
 
-## 动画
+## 函数封装
+
+### call()封装
+#### 描述
+改变函数this指向并进行函数调用
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `pliCall(fn,obj,value)`
+参数 |  fn:调用的函数</br>obj:this的指向</br>value:传入的参数</br>
+返回值 | 返回函数调用后的结果 
+#### 示例
+~~~javascript
+function add(a,b){
+    console.log(a+b+this.c)
+}
+let obj={
+    c:5
+}
+pliCall(add,obj,5,5); // 15
+~~~
+### apply()封装
+#### 描述
+改变函数this指向并进行函数调用
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `pliApply(fn,obj,value)`
+参数 |  fn:调用的函数</br>obj:this的指向</br>value:传入的参数(只能是数组形式)</br>
+返回值 | 返回函数调用后的结果 
+#### 示例
+~~~javascript
+function add(a,b){
+    console.log(a+b+this.c)
+}
+let obj={
+    c:5
+}
+pliApply(add,obj,[5,5]); // 15
+~~~
+### bind()封装
+#### 描述
+改变函数this指向并进行函数调用
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `pliBind(fn,obj,value)(value1)`
+参数 |  fn:调用的函数</br>obj:this的指向</br>value:传入的参数</br>value1:后续传入的参数(非必要)</br>
+返回值 | 返回函数调用后的结果 
+#### 示例
+~~~javascript
+function add(a,b){
+    console.log(a+b+this.c)
+}
+let obj={
+    c:5
+}
+pliBind(add,obj,5,5)(); // 15
+pliBind(add,obj,5)(5); // 15
+~~~
 
 ## 工具
 

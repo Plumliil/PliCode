@@ -24,6 +24,7 @@ class PliArr {
             return t + l
         }, 0)
     }
+
     // 排序 key 为排序的属性 无排序属性传入 '' order为排序方式 1为正序，-1为倒叙 默认正序
     getSort(key, order = 1) {
         if (key) return this.arr.sort((a, b) => {
@@ -33,6 +34,7 @@ class PliArr {
             return (a - b) * order
         })
     }
+
     // 数组扁平化
     flattening() {
         const flat = arr => {
@@ -49,6 +51,48 @@ class PliArr {
         return flat(this.arr)
     }
 }
+
+// 改变函数this的指向来执行函数
+// call函数封装
+function pliCall(fn, obj, ...args) {
+    if (obj === undefined || obj === null) {
+        obj = globalThis
+    }
+    obj.temp = fn
+    let result = obj.temp(...args)
+    delete obj.temp
+    return result
+}
+// apply函数
+function pliApply(fn,obj,args){
+    if(obj===undefined||obj===null){
+        obj=globalThis
+    }
+    obj.temp=fn;
+    let result=obj.temp(...args)
+    delete obj.temp
+    return result
+}
+// bind函数
+function pliBind(fn,obj,...args){
+    return function(...args2){
+        if(obj===undefined||obj===null){
+            obj=globalThis
+        }
+        obj.temp=fn;
+        let result=obj.temp(...args,...args2)
+        delete obj.temp;
+        return result
+    }
+}
+
+function add(a,b){
+    console.log('a+b+this.c',a+b+this.c);
+}
+let obj={
+    c:10
+}
+
 // 图片操作
 
 // 图片压缩
@@ -263,18 +307,32 @@ function pliSleep(delay = 1000) {
 }
 
 // 深拷贝
-function pliCopy(obj){
+function pliCopy(obj) {
     let res = obj instanceof Array ? [] : {}
-    for (const [k,v] of Object.entries(obj)) {
+    for (const [k, v] of Object.entries(obj)) {
         res[k] = typeof v === 'object' ? PliCopy(v) : v
     }
     return res
 }
 
+function deepCopy(obj) {
+    let newObj = Array.isArray(obj) ? [] : {}
+    if (obj && typeof (obj) === 'object') {
+        for (let key in obj) {
+            if (typeof (obj[key]) === "object") {
+                newObj[key] = deepCopy(obj[key])
+            } else {
+                newObj[key] = obj[key]
+            }
+        }
+    }
+    return newObj
+}
+
 // pliTypeOf判断不同数据类型
-function pliTypeOf(obj){
-    let res=Object.prototype.toString.call(obj);
-    res=res.split(' ')[1].slice(0,-1).toLowerCase();
+function pliTypeOf(obj) {
+    let res = Object.prototype.toString.call(obj);
+    res = res.split(' ')[1].slice(0, -1).toLowerCase();
     return res
 }
 
@@ -296,13 +354,18 @@ function pliTypeOf(obj){
 // newRes.hobbies=['eat'];
 // console.log('pl',pl);
 // console.log(newRes);
-export {
-    PliArr,
-    pliNowTime,
-    pliCreateRdm,
-    pliColorRdm,
-    pliRgb_Hex,
-    pliFilType,
-    plisleep,
-    pliTypeOf
-}
+
+// export {
+//     PliArr,
+//     // 手写实现函数
+//     pliCall,
+//     pliApply,
+//     pliBind,
+//     pliNowTime,
+//     pliCreateRdm,
+//     pliColorRdm,
+//     pliRgb_Hex,
+//     pliFilType,
+//     pliSleep,
+//     pliTypeOf
+// }
