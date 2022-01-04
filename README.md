@@ -15,13 +15,15 @@
 # 常用函数库
 
 ## 安装引用
-### 全部引用
+### 安装
+`npm i plumli`
+### 引用
 ~~~javascript
-
+const PliUtils = require('plumli/src/index');
 ~~~
-### 部分引用
+或
 ~~~javascript
-
+<script src="./node_modules/plumli/dist/pliUtils.js"></script>
 ~~~
 ## 数组方法
 ### 获取最大值
@@ -38,7 +40,7 @@
 #### 用法
 | # | 解释 |
 | :---: | :---: |
-语法 | `pliCall(fn,obj,value)`
+语法 | `PliUtils.pliCall(fn,obj,value)`
 参数 |  fn:调用的函数</br>obj:this的指向</br>value:传入的参数</br>
 返回值 | 返回函数调用后的结果 
 #### 示例
@@ -49,7 +51,7 @@ function add(a,b){
 let obj={
     c:5
 }
-pliCall(add,obj,5,5); // 15
+PliUtils.pliCall(add,obj,5,5); // 15
 ~~~
 ### apply()封装
 #### 描述
@@ -57,7 +59,7 @@ pliCall(add,obj,5,5); // 15
 #### 用法
 | # | 解释 |
 | :---: | :---: |
-语法 | `pliApply(fn,obj,value)`
+语法 | `PliUtils.pliApply(fn,obj,value)`
 参数 |  fn:调用的函数</br>obj:this的指向</br>value:传入的参数(只能是数组形式)</br>
 返回值 | 返回函数调用后的结果 
 #### 示例
@@ -68,7 +70,7 @@ function add(a,b){
 let obj={
     c:5
 }
-pliApply(add,obj,[5,5]); // 15
+PliUtils.pliApply(add,obj,[5,5]); // 15
 ~~~
 ### bind()封装
 #### 描述
@@ -76,7 +78,7 @@ pliApply(add,obj,[5,5]); // 15
 #### 用法
 | # | 解释 |
 | :---: | :---: |
-语法 | `pliBind(fn,obj,value)(value1)`
+语法 | `PliUtils.pliBind(fn,obj,value)(value1)`
 参数 |  fn:调用的函数</br>obj:this的指向</br>value:传入的参数</br>value1:后续传入的参数(非必要)</br>
 返回值 | 返回函数调用后的结果 
 #### 示例
@@ -87,8 +89,8 @@ function add(a,b){
 let obj={
     c:5
 }
-pliBind(add,obj,5,5)(); // 15
-pliBind(add,obj,5)(5); // 15
+PliUtils.pliBind(add,obj,5,5)(); // 15
+PliUtils.pliBind(add,obj,5)(5); // 15
 ~~~
 
 ## 工具
@@ -99,7 +101,7 @@ pliBind(add,obj,5)(5); // 15
 #### 用法
 | # | 解释 |
 | :---: | :---: |
-语法 | `pliTypeOf(value)`
+语法 | `PliUtils.pliTypeOf(value)`
 参数 | value:需要判断的值 
 返回值 | 返回获取对应的数据类型 
 #### 示例
@@ -108,10 +110,10 @@ let a = {},
     b = [],
     c = null,
     d;
-console.log(pliTypeOf(a)) // object
-console.log(pliTypeOf(b)) // array
-console.log(pliTypeOf(c)) // null
-console.log(pliTypeOf(d)) // undefined
+console.log(PliUtils.pliTypeOf(a)) // object
+console.log(PliUtils.pliTypeOf(b)) // array
+console.log(PliUtils.pliTypeOf(c)) // null
+console.log(PliUtils.pliTypeOf(d)) // undefined
 ~~~
 
 ### 获取当前时间
@@ -120,13 +122,13 @@ console.log(pliTypeOf(d)) // undefined
 #### 用法
 | # | 解释 |
 | :---: | :---: |
-语法 | `pliNowTime(type)`
+语法 | `PliUtils.pliNowTime(type)`
 参数 | type:获取时间的格式 目前支持20种不同形式的时间 
 返回值 | 返回当前的时间 
 #### 示例
 ~~~javascript
-console.log(pliNowTime('yyyy-mm-dd h:m:s')); // 2021-11-4 14:30:33
-console.log(pliNowTime('yyyy/mm/dd h:m')); // 2021/11/4 14:30
+console.log(PliUtils.pliNowTime('yyyy-mm-dd h:m:s')); // 2021-11-4 14:30:33
+console.log(PliUtils.pliNowTime('yyyy/mm/dd h:m')); // 2021/11/4 14:30
 ~~~
 
 
@@ -136,13 +138,13 @@ console.log(pliNowTime('yyyy/mm/dd h:m')); // 2021/11/4 14:30
 #### 用法
 | # | 解释 |
 |:--:|:--:|
-语法 | `pliCreateRdm(min,max,Integer)`|
+语法 | `PliUtils.pliCreateRdm(min,max,Integer)`|
 参数 | min:最小值,max:最大值,Integer:是否为整数 默认值为 1 非整数为 -1
 返回值 | 返回当前的时间 
 #### 示例
 ~~~javascript
-console.log(pliCreateRdm(1,100)); // 80
-console.log(pliCreateRdm(1,100,-1)); // 69.94
+console.log(PliUtils.pliCreateRdm(1,100)); // 80
+console.log(PliUtils.pliCreateRdm(1,100,-1)); // 69.94
 ~~~
 
 ### 随机颜色生成 
@@ -151,13 +153,13 @@ console.log(pliCreateRdm(1,100,-1)); // 69.94
 #### 用法
 | # | 解释 |
 | :---: | :---: |
-语法 | `pliColorRdm(type)`
+语法 | `PliUtils.pliColorRdm(type)`
 参数 | type:获取颜色的格式有rgb和hex两种，默认为rgb  
 返回值 | 返回颜色的值
 #### 示例
 ~~~javascript
-console.log(pliColorRdm()); // (153,17,88)
-console.log(pliColorRdm('hex')); // #DF80CB
+console.log(PliUtils.pliColorRdm()); // (153,17,88)
+console.log(PliUtils.pliColorRdm('hex')); // #DF80CB
 ~~~
 
 ### 颜色格式转换
@@ -166,14 +168,14 @@ console.log(pliColorRdm('hex')); // #DF80CB
 #### 用法
 | # | 解释 |
 | :---: | :---: |
-语法 | `pliRgb_Hex(data,type)`
+语法 | `PliUtils.pliRgb_Hex(data,type)`
 参数 | data:转换前的颜色数据</br>type:获取颜色的格式有rgb和hex两种，默认为rgb  
 返回值 | 返回转换后的颜色值
 支持格式|rgb:(255,255,255)</br>hex:#FFFFFF
 #### 示例
 ~~~javascript
-console.log(pliRgb_Hex('(255,255,255)','hex')); // #FFFFFF
-console.log(pliRgb_Hex('#FFFFFF','rgb')); // (255,255,255)
+console.log(PliUtils.pliRgb_Hex('(255,255,255)','hex')); // #FFFFFF
+console.log(PliUtils.pliRgb_Hex('#FFFFFF','rgb')); // (255,255,255)
 ~~~
 ### 文件分类
 #### 描述
@@ -181,7 +183,7 @@ console.log(pliRgb_Hex('#FFFFFF','rgb')); // (255,255,255)
 #### 用法
 | # | 解释 |
 | :---: | :---: |
-语法 | `pliFilType(file)`
+语法 | `PliUtils.pliFilType(file)`
 参数 | file:包含文件链接的数组
 返回值 | 返回分类后的链接
 #### 示例
@@ -198,7 +200,7 @@ let file = [
     '2102012001011)_49246.zip',
     '460101198309075187.gif',
 ]
-console.log(pliFilType(file));
+console.log(PliUtils.pliFilType(file));
 // {
 //   video: [ '130201198409273008.mp4', '210201200101149246.m4v' ],
 //   audio: [ '120201197411173093.mp3' ],

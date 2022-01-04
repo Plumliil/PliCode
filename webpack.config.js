@@ -9,7 +9,7 @@ module.exports={
         // 打包文件夹
         path:path.resolve(__dirname,'dist'),
         // 打包文件
-        filename:'plumli_utils.js',
+        filename:'pliUtils.js',
         // 向外暴露的对象名称
         library:'pliUtils',
         // 打包生成库可以通过esm/commonjs/requirejs的语法引入

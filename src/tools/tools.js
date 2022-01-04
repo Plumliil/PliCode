@@ -2,8 +2,8 @@
 function pliNowTime(type) {
     let time = new Date();
     let yyyy = time.getFullYear();
-    let mm = time.getMonth() < 10 ? `0${time.getMonth()}` : time.getMonth();
-    let dd = time.getDay() < 10 ? `0${time.getDay()}` : time.getDay();
+    let mm = time.getMonth() < 10 ? `0${time.getMonth()+1}` : time.getMonth()+1;
+    let dd = time.getDate() < 10 ? `0${time.getDate()}` : time.getDate();
     let h = time.getHours() < 10 ? `0${time.getHours()}` : time.getHours();
     let m = time.getMinutes();
     let s = time.getSeconds() < 10 ? `0${time.getSeconds()}` : time.getSeconds();
@@ -133,4 +133,12 @@ function pliSleep(delay = 1000) {
         setTimeout(() => resolve(), delay);
     })
 }
-export{pliNowTime,pliColorRdm,pliCreateRdm,pliFilType,pliRgb_Hex,pliSleep}
+// export{pliNowTime,pliColorRdm,pliCreateRdm,pliFilType,pliRgb_Hex,pliSleep}
+module.exports = {
+    pliNowTime,
+    pliColorRdm,
+    pliCreateRdm,
+    pliFilType,
+    pliRgb_Hex,
+    pliSleep
+}

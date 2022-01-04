@@ -1,27 +1,74 @@
-function into() {
-    console.log("%cHello,%cPlumli", "color:red;", "color:red;");
+function intro() {
+    console.log("%cHello,%cPlumli!", "color:red;", "color:red;");
 }
-export {
+// export {
+//     pliCall,
+//     pliApply,
+//     pliBind,
+//     pliCopy,
+//     PliThrottle,
+//     PliDebounce
+// }
+// from './methods/methods';
+// export {
+//     pliNowTime,
+//     pliColorRdm,
+//     pliCreateRdm,
+//     pliFilType,
+//     pliRgb_Hex,
+//     pliSleep
+// }
+// from './tools/tools';
+// export {
+//     PliArr
+// }
+// from './array/array';
+
+// export {
+//     intro
+// }
+// const PliUtils={
+//     PliArray:require('./array/array'),
+//     PliMethods:require('./methods/methods'),
+//     PliTools:require('./tools/tools'),
+//     intro
+// }
+const {
+    PliArr
+} = require('./array/array');
+const {
     pliCall,
     pliApply,
     pliBind,
-    pliCopy
-}
-from './methods/methods';
-export {
+    pliCopy,
+    pliThrottle,
+    pliDebounce
+} = require('./methods/methods');
+const {
     pliNowTime,
     pliColorRdm,
     pliCreateRdm,
     pliFilType,
     pliRgb_Hex,
     pliSleep
-}
-from './tools/tools';
-export {
-    PliArr
-}
-from './array/array';
+} = require('./tools/tools');
 
-export {
-    into
+const PliUtils = {
+    // methods
+    pliCall,
+    pliApply,
+    pliBind,
+    pliCopy,
+    pliThrottle,
+    pliDebounce,
+    // tools
+    pliNowTime,
+    pliColorRdm,
+    pliCreateRdm,
+    pliFilType,
+    pliRgb_Hex,
+    pliSleep,
+    // intro
+    intro
 }
+module.exports = PliUtils;

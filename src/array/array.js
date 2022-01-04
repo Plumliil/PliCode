@@ -48,4 +48,5 @@ class PliArr {
     }
 }
 
-export {PliArr}
+// export {PliArr}
+module.exports= {PliArr}
