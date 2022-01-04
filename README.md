@@ -19,7 +19,10 @@
 `npm i plumli`
 ### 引用
 ~~~javascript
+// 全部引用
 const PliUtils = require('plumli/src/index');
+// 部分引用
+const {intro} = require('plumli/src/index');
 ~~~
 或
 ~~~javascript
@@ -91,6 +94,43 @@ let obj={
 }
 PliUtils.pliBind(add,obj,5,5)(); // 15
 PliUtils.pliBind(add,obj,5)(5); // 15
+~~~
+### 节流
+#### 描述
+连续触发事件但是在 n 秒中只执行一次函数
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliThrottle(callback,wait)`
+参数 |  callback:需要执行的函数</br>wait:等待的时间</br>
+返回值 | 返回一个执行函数 
+#### 示例
+~~~javascript
+window.addEventListener('scroll',
+  pliUtils.pliThrottle(function () {
+    console.log(window);
+  }, 1000)
+)
+~~~
+### 防抖
+#### 描述
+触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliDebounce(callback,time)`
+参数 |  callback:需要执行的函数</br>time:等待的时间</br>
+返回值 | 返回函数调用后的结果 
+#### 示例
+~~~html
+<input type="text">
+<script>
+    pliUtils.intro()
+    document.querySelector('input').onkeydown =
+        pliUtils.pliDebounce(function (e) {
+            console.log(e.keyCode);
+        }, 1000)
+</script>
 ~~~
 
 ## 工具
