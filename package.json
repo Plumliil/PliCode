@@ -1,19 +1,27 @@
 {
-  "name": "PliCode",
-  "version": "1.0.0",
-  "description": "<!-- ![](https://gitee.com/Plumliil/images/raw/master/MdPicture/author.png) -->",
-  "main": "pli.js",
+  "name": "plumli",
+  "version": "0.0.1",
+  "description": "plumli自用工具函数库",
+  "main": "./dist/plumli_utils.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development --watch"
   },
   "repository": {
     "type": "git",
     "url": "git@gitee.com:plumliil/PliCode.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "utils",
+    "array",
+    "function",
+    "object"
+  ],
+  "author": "Plumli",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
   }
 }
