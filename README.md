@@ -29,11 +29,7 @@ const {intro} = require('plumli/src/index');
 <script src="./node_modules/plumli/dist/pliUtils.js"></script>
 ~~~
 ## 数组方法
-### 获取最大值
-### 获取最小值
-### 元素求和
-### 元素排序
-### 数组扁平化
+
 
 ## 函数封装
 
