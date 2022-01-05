@@ -5,7 +5,7 @@
     align=center
      style="text-align-center"
     >
-    <img src="https://gitee.com/Plumliil/images/raw/master/MdPicture/author.png"  style="border-radius:50%">
+    <img src="https://gitee.com/Plumliil/images/raw/master/MdPicture/20220104173804.png"  style="border-radius:50%">
 </div>
 <div align=center>
     <a href="https://www.plumli.xyz" style="font-size:30px;font-weight:700;text-decoration: none;" title="PlumLi">PlumLi</a>
