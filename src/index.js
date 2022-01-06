@@ -34,13 +34,33 @@ function intro() {
 //     intro
 // }
 const {
-    PliArr
+    pliChunk,
+    pliConcat,
+    pliDifference,
+    pliDrop,
+    pliEvery,
+    pliFilter,
+    pliFind,
+    pliFindIndex,
+    pliFlat,
+    pliMap,
+    pliPull,
+    pliPullAll,
+    pliReduce,
+    pliSlice,
+    pliSome,
+    pliUnique
 } = require('./array/array');
+const {
+    pliNewInstance,
+    pliInstanceOf,
+    pliMergeObj,
+    pliCopy
+} = require('./object/object')
 const {
     pliCall,
     pliApply,
     pliBind,
-    pliCopy,
     pliThrottle,
     pliDebounce
 } = require('./methods/methods');
@@ -50,15 +70,39 @@ const {
     pliCreateRdm,
     pliFilType,
     pliRgb_Hex,
-    pliSleep
+    pliSleep,
+    pliReverseStr,
+    pliPalindrome,
+    pliTruncate
 } = require('./tools/tools');
 
 const PliUtils = {
+    // array
+    pliChunk, // 数组分块
+    pliConcat,
+    pliDifference, // 获取两个数组间差异
+    pliDrop, // 向左(右)获取count元素
+    pliEvery,
+    pliFilter,
+    pliFind,
+    pliFindIndex,
+    pliFlat,
+    pliMap,
+    pliPull, // 删除数组中部分元素 参数为Number
+    pliPullAll, // 删除数组中部分元素 参数为Array
+    pliReduce, //数组切片
+    pliSlice,
+    pliSome,
+    pliUnique,
+    // object
+    pliNewInstance,
+    pliInstanceOf,
+    pliMergeObj,
+    pliCopy,
     // methods
     pliCall,
     pliApply,
     pliBind,
-    pliCopy,
     pliThrottle,
     pliDebounce,
     // tools
@@ -68,6 +112,9 @@ const PliUtils = {
     pliFilType,
     pliRgb_Hex,
     pliSleep,
+    pliReverseStr,
+    pliPalindrome,
+    pliTruncate,
     // intro
     intro
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+                let obj1 = {
+            a: [{
+                x: 1
+            }, {
+                y: 2
+            }],
+            b: 2,
+            c: {
+                d: 10
+            }
+        }
+        let obj2 = {
+            a: [{
+                z: 3
+            }],
+            b: 'b',
+            c: {
+                e: 'e'
+            },
+            d: 10
+        }
+
+        function pliCopy(obj) {
+            if (typeof obj === 'object') {
+
+                let isArray = Array.isArray(obj);
+                let result = isArray ? [] : {};
+                if (isArray) {
+                    obj.forEach((value, index) => {
+                        result[index] = value;
+                    })
+                } else {
+                    Object.keys(obj).forEach(key => {
+                        if (typeof obj[key] === 'object') {
+                            result[key] = pliCopy(obj[key])
+                        } else {
+                            result[key] = obj[key]
+                        }
+                    })
+                }
+                return result
+            } else {
+                return obj;
+            }
+        }
+        obj1.c.i = obj1.a;
+        obj1.a[2] = obj1.c;
+        console.log(pliCopy(obj1));
+    </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 function pliNowTime(type) {
     let time = new Date();
     let yyyy = time.getFullYear();
-    let mm = time.getMonth() < 10 ? `0${time.getMonth()+1}` : time.getMonth()+1;
+    let mm = time.getMonth() < 10 ? `0${time.getMonth()+1}` : time.getMonth() + 1;
     let dd = time.getDate() < 10 ? `0${time.getDate()}` : time.getDate();
     let h = time.getHours() < 10 ? `0${time.getHours()}` : time.getHours();
     let m = time.getMinutes();
@@ -133,6 +133,42 @@ function pliSleep(delay = 1000) {
         setTimeout(() => resolve(), delay);
     })
 }
+// 字符串函数封装
+// 字符串倒序 reverseString(str) 生成一个倒序字符串
+function pliReverseStr(str) {
+    // 将字符串转为数组
+    let res=[];
+    for(let i=0;i<[...str].length;i++){
+        res[i]=[...str][[...str].length-1-i]
+    }
+    return res.join('')
+}
+// 回文字符串 palindrome(str) 如果给定的字符串时回文，返回true，否则返回false
+function pliPalindrome(str) {
+    let res=[];
+    for(let i=0;i<[...str].length;i++){
+        res[i]=[...str][[...str].length-1-i]
+    }
+    return str===res.join('')
+}
+// 截取字符串 truncate(str,num) 如果字符串的长度超过了num，截取前面num长度部分，并以...结束
+function pliTruncate(str, num) {
+    let result=[]
+    for(let i=0;i<[...str].length;i++){
+        if(i<num){
+            result.push([...str][i])
+        }
+    }
+    return result.join('')+'...';
+}
+
+
+
+
+
+
+
+
 // export{pliNowTime,pliColorRdm,pliCreateRdm,pliFilType,pliRgb_Hex,pliSleep}
 module.exports = {
     pliNowTime,
@@ -140,5 +176,8 @@ module.exports = {
     pliCreateRdm,
     pliFilType,
     pliRgb_Hex,
-    pliSleep
+    pliSleep,
+    pliReverseStr,
+    pliPalindrome,
+    pliTruncate
 }
