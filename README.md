@@ -30,6 +30,218 @@ const {intro} = require('plumli/src/index');
 ~~~
 ## 数组方法
 
+### map()封装
+#### 描述
+方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。 
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliMap(array, callback)`
+参数 |  array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>
+返回值 | 返回新数组 
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(PliUtils.pliMap(arr, v => v * 2)); // [2,4,6,8,10]
+~~~
+
+### reduce()封装
+#### 描述
+方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliReduce(array, callback, init)`
+参数 |  array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>init:作为第一次调用 callback函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。
+返回值 | 函数累计处理的结果
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(PliUtils.pliReduce(arr, (t, v) => t + v, 0)); // 15
+~~~
+
+### every()封装
+#### 描述
+该方法测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值。
+注意：若收到一个空数组，此方法在一切情况下都会返回 true。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliEvery(array, callback)`
+参数 |  array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>
+返回值 | 若全部满足条件返回true,否则返回false.若收到一个空数组，此方法在一切情况下都会返回 true。
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(PliUtils.pliEvery(arr, v => v > 3)); // false
+console.log(PliUtils.pliEvery(arr, v => v > 0)); // true
+~~~
+
+### some()封装
+#### 描述
+该方法测试数组中是不是至少有1个元素通过了被提供的函数测试。它返回的是一个布尔值。
+注意：如果用一个空数组进行测试，在任何情况下它返回的都是false。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliEvery(array, callback)`
+参数 |  array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>
+返回值 | 数组中有至少一个元素通过回调函数的测试就会返回true；所有元素都没有通过回调函数的测试返回值才会为false。
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(PliUtils.pliSome(arr, v => v > 5)); // false
+console.log(PliUtils.pliSome(arr, v => v > 0)); // true
+~~~
+
+
+
+### filter()封装
+#### 描述
+方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。如果没有任何数组元素通过测试，则返回空数组。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliFilter(array, callback)`
+参数 |  array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>
+返回值 | 返回新数组 
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(PliUtils.pliFilter(arr, v => v > 3)); // [4,5]
+~~~
+
+### find()封装
+#### 描述
+方法返回数组中满足提供的测试函数条件的第一个元素的值。否则返回 undefined。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliFind(array,callback)`
+参数 |  array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>
+返回值 | 满足回调函数条件返回满足条件的第一个元素，否则返回undefined 
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(PliUtils.pliFind(arr, v => v > 3)); // 4
+~~~
+
+### findIndex()封装
+#### 描述
+方法返回数组中满足提供的测试函数条件的第一个元素的索引。否则返回 -1。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliFindIndex(array,callback)`
+参数 |  array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>
+返回值 | 方法返回数组中满足提供的测试函数条件的第一个元素的索引，否则返回 -1
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(PliUtils.pliFind(arr, v => v > 3)); // 3
+~~~
+
+### slice()封装
+#### 描述
+方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliSlice(array,begin,end)`
+参数 |  array:需要操作的数组</br>begin:开始截取的元素索引</br>end:结束截取的元素索引(不包含)</br>
+返回值 | 一个含有被提取元素的新数组。
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(PliUtils.pliSlice(arr, 1,3)); // [2，3]
+~~~
+### concat()封装
+#### 描述
+该方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliConcat(array,array2,array3,...)`
+参数 |  array为需要操作的数组
+返回值 | 一个含有被提取元素的新数组。
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4];
+let arr2 = ['a', 'b', 'c', 'd'];
+let arr3 = [5, 6, 7, 8];
+console.log(PliUtils.pliConcat(arr, arr2, arr3));
+~~~
+
+### 数组去重
+#### 描述
+删除数组内相同元素，返回新数组
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliUnique(array)`
+参数 |  array:需要操作的数组</br>
+返回值 | 方法返回数组中满足提供的测试函数条件的第一个元素的索引，否则返回 -1
+#### 示例
+~~~javascript
+let arr = [1, 3, 4, 3, 5, 3];
+console.log(PliUtils.pliUnique(arr)); // [1,3,4,5]
+~~~
+
+### 数组分块
+#### 描述
+将数组按照某个长度进行分块
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliChunk(array)`
+参数 |  array:需要操作的数组</br>
+返回值 | 返回分块后的数组
+#### 示例
+~~~javascript
+let arr = [1, 3, 4, 3, 5, 3, 2];
+console.log(PliUtils.pliChunk(arr)); // [[1],[3],[4],[3],[5],[3],[2]] 
+console.log(PliUtils.pliChunk(arr, 1)); // [[1],[3],[4],[3],[5],[3],[2]] 
+console.log(PliUtils.pliChunk(arr, 3)); // [[1,3,4],[3,5,3],[2]]
+console.log(PliUtils.pliChunk(arr, 4)); // [[1,3,4,3],[5,3,2]]
+~~~
+
+
+
+    pliConcat,
+    pliDifference, // 获取两个数组间差异
+    pliDrop, // 向左(右)获取count元素
+    pliFlat,
+    pliPull, // 删除数组中部分元素 参数为Number
+    pliPullAll, // 删除数组中部分元素 参数为Array
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 函数封装
 
