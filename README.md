@@ -12,6 +12,7 @@
 </div>
 <!-- <h1 style="text-align:center">常用函数库</h1> -->
 
+
 # 常用函数库
 
 ## 安装引用
@@ -93,9 +94,6 @@ let arr = [1, 2, 3, 4, 5];
 console.log(PliUtils.pliSome(arr, v => v > 5)); // false
 console.log(PliUtils.pliSome(arr, v => v > 0)); // true
 ~~~
-
-
-
 ### filter()封装
 #### 描述
 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。如果没有任何数组元素通过测试，则返回空数组。
@@ -167,9 +165,90 @@ console.log(PliUtils.pliSlice(arr, 1,3)); // [2，3]
 #### 示例
 ~~~javascript
 let arr = [1, 2, 3, 4];
-let arr2 = ['a', 'b', 'c', 'd'];
-let arr3 = [5, 6, 7, 8];
-console.log(PliUtils.pliConcat(arr, arr2, arr3));
+let arr2 = ['a', 'b', 'c'];
+let arr3 = [5, 6, 7];
+console.log(PliUtils.pliConcat(arr, arr2, arr3));// [1, 2, 3, 4,'a', 'b', 'c', 5, 6, 7,]
+~~~
+
+### 数组最大值
+#### 描述
+通过该方法获取数组中元素最大值
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliGetMax(array,value)`
+参数 |  array:需要操作的数组</br>value:数组内某个对象的元素(非必要)
+返回值 | 返回最大值元素
+#### 示例
+~~~javascript
+let arr = [
+  { name: 'js', price: 200, click: 312 },
+  { name: 'node', price: 235, click: 200 },
+  { name: 'css', price: 173, click: 513 }
+]
+let arr1 = [3, 1, 5, 2, 4];
+
+console.log(pliUtils.pliGetMax(arr,'click')); // {"name":"css","price":173,"click":513}
+console.log(pliUtils.pliGetMax(arr1)); // 5
+~~~
+
+### 数组最小值
+#### 描述
+通过该方法获取数组中元素最小值
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliGetMin(array,value)`
+参数 |  array:需要操作的数组</br>value:数组内某个对象的元素(非必要)
+返回值 | 返回最小值元素
+#### 示例
+~~~javascript
+let arr = [
+  { name: 'js', price: 200, click: 312 },
+  { name: 'node', price: 235, click: 200 },
+  { name: 'css', price: 173, click: 513 }
+]
+let arr1 = [3, 1, 5, 2, 4];
+
+console.log(pliUtils.pliGetMin(arr,'click')); // {"name":"node","price":235"click":200}
+console.log(pliUtils.pliGetMin(arr1)); // 1
+~~~
+
+### 数组排序
+#### 描述
+通过冒泡排序方式，将数组或数组内某个对象的元素按升序或降序排列，改变原数组
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliSort(array,value,order)`
+参数 |  array:需要操作的数组</br>value:数组内某个对象的元素</br>order:排序顺序，1 为升序，-1 为降序，默认为 升序
+返回值 | 返回排序后的数组
+#### 示例
+~~~javascript
+let arr = [
+  { name: 'js', price: 200, click: 312 },
+  { name: 'node', price: 235, click: 200 },
+  { name: 'css', price: 173, click: 513 }
+];
+let arr1 = [3, 1, 5, 2, 4];
+
+console.log(pliSort(arr, 'price'));
+// [
+//   {"name":"js","price":173,"click":312},
+//   {"name":"node","price":200,"click":200},
+//   {"name":"css","price":235,"click":513}
+// ]
+console.log(pliSort(arr, 'price', -1));
+// [
+//  {"name":"js","price":235,"click":312},
+//  {"name":"node","price":200,"click":200},
+//  {"name":"css","price":173,"click":513}
+// ]
+
+console.log(pliSort(arr1, null, -1));
+// [5,4,3,2,1]
+console.log(pliSort(arr1));
+// [1,2,3,4,5]
 ~~~
 
 ### 数组去重
@@ -205,43 +284,160 @@ console.log(PliUtils.pliChunk(arr, 3)); // [[1,3,4],[3,5,3],[2]]
 console.log(PliUtils.pliChunk(arr, 4)); // [[1,3,4,3],[5,3,2]]
 ~~~
 
+### 数组元素删除
+#### 描述
+删除数组中部分元素 原数组改变
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliPull(array,value,value2,...)`</br>`PliUtils.pliPull(array,[value,value2,...])`
+参数 |  array:需要操作的数组</br>value:需要删除的元素
+返回值 | 返回删除元素组成的的数组
+#### 示例
+~~~javascript
+let arr = [1, 2, 3, 4, 'a', 'b', 'c'];
+
+console.log(PliUtils.pliPull(arr, 2, 4, 'b', 10,'d')); // [2,4,"b"]
+console.log(PliUtils.pliPullAll(arr, [2, 4, 'b', 10,'d'])); // [2,4,"b"]
+~~~
+
+### 获取数组部分元素
+#### 描述
+得到数组过滤掉左边或右边count个元素后后剩余元素组成的数组
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliDrop(array, count, lr)`
+参数 |  array:需要操作的数组</br>count:需要过滤的元素个数 默认为1</br>lr:选择左右 1 为左 -1 为右默认为右
+返回值 | 得到一个新数组
+#### 示例
+~~~javascript
+let arr = [1, 3, 5, 7];
+
+console.log(PliUtils.pliDrop(arr, 2)); // [5, 7]
+console.log(PliUtils.pliDrop(arr, 2, -1)); // [1, 3]
+~~~
+
+### 获取两数组间的差异
+#### 描述
+得到当前数组中所有不在另一个数组中的元素组成的一个新数组(不改变原数组)
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliDifference(array, array2)`
+参数 |  array:需要操作的第一个数组</br>array2:需要操作的第二个数组
+返回值 | 得到一个新数组
+#### 示例
+~~~javascript
+let arr = [1, 3, 5, 7];
+let arr2 = [2, 3, 5, 8];
+
+console.log(PliUtils.pliDifference(arr, arr2)); // [1, 7]
+~~~
+
+### 数组扁平化
+#### 描述
+取出嵌套数组(多维)中的所有元素放到一个新数组(一维)中
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliFlat(array)`
+参数 |  array:需要操作的数组
+返回值 | 得到一个新数组
+#### 示例
+~~~javascript
+let arr = [1, 2, [3, 4, [5, 6, [7, 8, [9]]]]];
+
+console.log(PliUtils.pliFlat(arr)); // [1,2,3,4,5,6,7,8,9]
+~~~
+<hr>
+
+## 对象方法
+
+### new 方法
+#### 描述
+通过该方法来构造函数实例化对象
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliNewInstance(Fn,...args))`
+参数 |  Fn:构造函数</br>args:传入的参数
+返回值 | 返回实例化后的对象
+#### 示例
+~~~javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  return this.name + this.age
+}
+let p = pliNewInstance(Person, 'zs', 21);
+~~~
+
+### instanceOf 方法
+#### 描述
+通过该方法来构造函数实例化对象
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliInstanceOf(obj,constructor))`
+参数 |  obj:某个实例对象</br>constructor:某个构造函数
+返回值 | 返回实例化后的对象
+#### 示例
+~~~javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  return this.name + this.age
+}
+
+let p = new Person('pli', 22)
+console.log(PliUtils.pliInstanceOf(p, Person)); // true
+console.log(PliUtils.pliInstanceOf({}, Person)); // false
+console.log(PliUtils.pliInstanceOf(Person, Object)); // true
+~~~
+
+### 对象合并
+#### 描述
+合并多个对象 返回合并后的对象，不改变原对象
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliMergeObj(...objs)`
+参数 |  obj:需要合并的对象
+返回值 | 返回合并后后的对象
+#### 示例
+~~~javascript
+let obj1 = { person: [{ name: 'zs' }, { name: 'ls' }], pos: 'hn' }
+let obj2 = { person: { name: 'ww' }, pos: 'bj', sex: '男' }
+
+console.log(PliUtils.pliMergeObj(obj1,obj2));
+// {
+//     "person":[{"name":"zs"},{"name":"ls"},{"name":"ww"}],
+//     "pos":["hn","bj"],
+//     "sex":"男"
+// } 
+~~~
+
+### 对象拷贝
+#### 描述
+对对象进行深拷贝，不仅复制了对象属性或数组元素本身, 还复制了指向的对象(使用递归)
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliCopy(obj)`
+参数 |  obj:需要拷贝的对象
+返回值 | 返回拷贝后的新对象
+#### 示例
+~~~javascript
+let obj = { person: [{ name: 'zs' }, { name: 'ls' }], pos: 'hn' }
+let res = pliCopy(obj);
+res['person'][1]['name'] = 'ww';
+console.log(res); // {"person":[{"name":"zs"},{"name":"ww"}],"pos":"hn"}
+console.log(obj); // {"person":[{"name":"zs"},{"name":"ls"}],"pos":"hn"}
+~~~
 
 
-    pliConcat,
-    pliDifference, // 获取两个数组间差异
-    pliDrop, // 向左(右)获取count元素
-    pliFlat,
-    pliPull, // 删除数组中部分元素 参数为Number
-    pliPullAll, // 删除数组中部分元素 参数为Array
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<hr>
 
 ## 函数封装
 
@@ -425,6 +621,59 @@ console.log(PliUtils.pliColorRdm('hex')); // #DF80CB
 console.log(PliUtils.pliRgb_Hex('(255,255,255)','hex')); // #FFFFFF
 console.log(PliUtils.pliRgb_Hex('#FFFFFF','rgb')); // (255,255,255)
 ~~~
+
+### 字符串回文
+#### 描述
+判断某一字符串是否是回文字符串
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliPalindrome(str)`
+参数 | str:需要判断的字符串
+返回值 | 如果是回文字符串则返回true，反之返回false
+#### 示例
+~~~javascript
+let str = '12321';
+let str2 = '12345';
+
+console.log(PliUtils.pliPalindrome(str)); // true
+console.log(PliUtils.pliPalindrome(str2)); // false
+~~~
+
+### 字符串倒序
+#### 描述
+生成给定字符串的倒序字符串
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliReverseStr(str)`
+参数 | str:需要进行倒序的字符串
+返回值 | 返回传入字符串的倒序字符串
+#### 示例
+~~~javascript
+let str = '倒叙字符串';
+
+console.log(PliUtils.pliReverseStr(str)); // 串符字序倒
+~~~
+
+### 字符串截取
+#### 描述
+生成给定字符串进行截取，其他部分用 ... 代替
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliTruncate(str,num)`
+参数 | str:需要进行截取的字符串</br>num:截取的字数
+返回值 | 返回截取后的字符串
+#### 示例
+~~~javascript
+let str = '字符串截取字符串截取字符串截取字符串截取';
+
+console.log(PliUtils.pliTruncate(str,9)); // 字符串截取字符串截...
+~~~
+
+
+
 ### 文件分类
 #### 描述
 后端传来的连接格式可能不分通过调用该方法来可以对链接进行分类

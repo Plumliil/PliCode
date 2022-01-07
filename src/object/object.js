@@ -32,7 +32,6 @@
         function pliMergeObj(...objs) {
             let result = {};
             objs.forEach(obj => {
-                // console.log(obj);
                 Object.keys(obj).forEach(key => {
                     if (result.hasOwnProperty(key)) {
                         result[key] = [].concat(result[key], obj[key])
@@ -47,28 +46,30 @@
         // 深浅拷贝
         function pliCopy(obj) {
             if (typeof obj === 'object') {
-
-                let isArray = Array.isArray(obj);
-                let result = isArray ? [] : {};
-                if (isArray) {
-                    obj.forEach((value, index) => {
-                        // console.log(value);
-                        result[index] = value;
-                    })
-                } else {
-                    Object.keys(obj).forEach(key => {
-                        if (typeof obj[key] === 'object') {
-                            result[key] = pliCopy(obj[key])
-                        } else {
-                            result[key] = obj[key]
-                        }
-                    })
+              let isArray = Array.isArray(obj);
+              let res = isArray ? [] : {};
+              if (isArray) {
+                for (let i = 0; i < obj.length; i++) {
+                  if (typeof obj[i] === 'object') {
+                    res[i] = pliCopy(obj[i])
+                  } else {
+                    res[i] = obj[i]
+                  }
                 }
-                return result
+              } else {
+                Object.keys(obj).forEach(key => {
+                  if (typeof obj[key] === 'object') {
+                    res[key] = pliCopy(obj[key])
+                  } else {
+                    res[key] = obj[key]
+                  }
+                })
+              }
+              return res;
             } else {
-                return obj;
+              return obj;
             }
-        }
+          }
 
         module.exports={
             pliNewInstance,

@@ -1,5 +1,5 @@
 function intro() {
-    console.log("%cHello,%cPlumli!", "color:red;", "color:red;");
+    console.log("%cHello,%cPlumli!", "color:red;", "color:red;",'https://github.com/Plumliil');
 }
 // export {
 //     pliCall,
@@ -34,6 +34,9 @@ function intro() {
 //     intro
 // }
 const {
+    pliGetMax,
+    pliGetMin,
+    pliSort,
     pliChunk,
     pliConcat,
     pliDifference,
@@ -78,6 +81,9 @@ const {
 
 const PliUtils = {
     // array
+    pliGetMax,
+    pliGetMin,
+    pliSort,
     pliChunk, // 数组分块
     pliConcat,
     pliDifference, // 获取两个数组间差异

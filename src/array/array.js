@@ -4,6 +4,86 @@
  */
 
 'use strict'
+// 取数组中最大元素
+function pliGetMax(arr, value) {
+    let max = value ? arr[0][value] : arr[0];
+    for (let i = 0; i < arr.length; i++) {
+      if (value) {
+        if (arr[i][value] > max) {
+          max = arr[i]
+        }
+      } else {
+        if (arr[i] > max) {
+          max = arr[i]
+        }
+      }
+    }
+    return max;
+  }
+  // 取数组中最小元素
+  function pliGetMin(arr, value) {
+    let min = value ? arr[0][value] : arr[0];
+    for (let i = 0; i < arr.length; i++) {
+      if (value) {
+        if (arr[i][value] < min) {
+          min = arr[i]
+        }
+      } else {
+        if (arr[i] < min) {
+          min = arr[i]
+        }
+      }
+    }
+    return min;
+  }
+// 通过冒泡排序方式，将数组或数组内某个对象的元素按升序或降序排列，返回新数组
+function pliSort(arr, value = undefined, order = 1) {
+  let len = arr.length - 1;
+  let temp = null;
+  if (value === undefined || value === null) {
+    for (let i = 0; i < len; i++) {
+      for (let j = 0; j < len - i; j++) {
+        if (order === -1) {
+          if (arr[j] < arr[j + 1]) {
+            temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+            temp = null;
+          }
+        } else {
+          if (arr[j] > arr[j + 1]) {
+            temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+            temp = null;
+          }
+        }
+      }
+    }
+  } else {
+    for (let i = 0; i < len; i++) {
+      for (let j = 0; j < len - i; j++) {
+        if (order === -1) {
+          if (arr[j][value] < arr[j + 1][value]) {
+            temp = arr[j][value];
+            arr[j][value] = arr[j + 1][value];
+            arr[j + 1][value] = temp;
+            temp = null;
+          }
+        } else {
+          if (arr[j][value] > arr[j + 1][value]) {
+            temp = arr[j][value];
+            arr[j][value] = arr[j + 1][value];
+            arr[j + 1][value] = temp;
+            temp = null;
+          }
+        }
+      }
+    }
+  }
+
+  return arr
+}
 
 // pliMap() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。 返回新数组
 function pliMap(array, callback) {
@@ -256,6 +336,9 @@ function pliDrop(array, count, lr) {
 
 
 module.exports = {
+    pliGetMax,
+    pliGetMin,
+    pliSort,
     pliChunk, // 数组分块
     pliConcat,
     pliDifference, // 获取两个数组间差异
