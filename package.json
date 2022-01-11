@@ -1,6 +1,6 @@
 {
   "name": "plumli",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Plumli Self Tool Library",
   "main": "./dist/pliUtils.js",
   "scripts": {
@@ -19,7 +19,6 @@
   ],
   "author": "Plumli",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"

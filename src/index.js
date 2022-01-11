@@ -76,7 +76,8 @@ const {
     pliSleep,
     pliReverseStr,
     pliPalindrome,
-    pliTruncate
+    pliTruncate,
+    pliPinYin
 } = require('./tools/tools');
 
 const PliUtils = {
@@ -121,6 +122,7 @@ const PliUtils = {
     pliReverseStr,
     pliPalindrome,
     pliTruncate,
+    pliPinYin,
     // intro
     intro
 }

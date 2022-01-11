@@ -1,3 +1,4 @@
+const pinyin = require('./pinyin')
 // 获取当前时间
 function pliNowTime(type) {
     let time = new Date();
@@ -137,39 +138,158 @@ function pliSleep(delay = 1000) {
 // 字符串倒序 reverseString(str) 生成一个倒序字符串
 function pliReverseStr(str) {
     // 将字符串转为数组
-    let res=[];
-    for(let i=0;i<[...str].length;i++){
-        res[i]=[...str][[...str].length-1-i]
+    let res = [];
+    for (let i = 0; i < [...str].length; i++) {
+        res[i] = [...str][
+            [...str].length - 1 - i
+        ]
     }
     return res.join('')
 }
 // 回文字符串 palindrome(str) 如果给定的字符串时回文，返回true，否则返回false
 function pliPalindrome(str) {
-    let res=[];
-    for(let i=0;i<[...str].length;i++){
-        res[i]=[...str][[...str].length-1-i]
+    let res = [];
+    for (let i = 0; i < [...str].length; i++) {
+        res[i] = [...str][
+            [...str].length - 1 - i
+        ]
     }
-    return str===res.join('')
+    return str === res.join('')
 }
 // 截取字符串 truncate(str,num) 如果字符串的长度超过了num，截取前面num长度部分，并以...结束
 function pliTruncate(str, num) {
-    let result=[]
-    for(let i=0;i<[...str].length;i++){
-        if(i<num){
+    let result = []
+    for (let i = 0; i < [...str].length; i++) {
+        if (i < num) {
             result.push([...str][i])
         }
     }
-    return result.join('')+'...';
+    return result.join('') + '...';
 }
 
+// 事件总线
+class PliEventBus {
+    constructor() {
+        this.callbacks = {};
+    }
+    on(eventName, callback) {
+        if (this.callbacks[eventName]) {
+            this.callbacks[eventName].push(callback);
+        } else {
+            this.callbacks[eventName] = [callback]
+        }
+    }
+    emit(eventName, data) {
+        if (this.callbacks[eventName] && this.callbacks[eventName].length > 0) {
+            this.callbacks[eventName].forEach(callback => {
+                callback(data)
+            })
+        }
+    }
+    off(eventName) {
+        if (eventName) {
+            delete this.callbacks[eventName]
+        } else {
+            this.callbacks = {}
+        }
+    }
+}
+// let p = new PliEventBus();
+// p.on('login', data => {
+//     console.log(data.name + '登陆成功');
+// })
+// p.on('login', data => {
+//     console.log(data.name + '信息已经输入云端保存');
+// })
 
+// p.emit('login', {
+//     name: 'zs',
+//     age: 21
+// });
+// p.off('login')
 
+// p.on('login', data => {
+//     console.log(data.name + '信息已经输入云端保存');
+// })
 
+// 发布订阅模式
+// PubSub.subscribe(msg,subscriber):订阅消息，指定消息名和订阅者回调函数
+// PubSub.publish(msg,data):异步发布消息，指定消息名和数据
+class PliPubSub {
+    constructor() {
+        this.id = 0;
+        this.callbacks = {};
+    }
+    subscribe(msgname, callback) {
+        let token = 'token_' + this.id++;
+        if (this.callbacks[msgname]) {
+            this.callbacks[msgname][token] = callback;
+        } else {
+            this.callbacks[msgname] = {
+                [token]: callback
+            }
+        }
+        return token;
+    }
+    unSubscribe(flag) {
+        if (flag === undefined) {
+            this.callbacks = {}
 
+        } else if (typeof flag === 'string') {
+            if (flag.includes('token_')) {
+                Object.keys(this.callbacks).forEach(key => {
+                    delete this.callbacks[key][flag]
+                })
+            } else {
+                delete this.callbacks[flag]
+            }
+        }
+    }
+    publish(msgname, data) {
+        if (this.callbacks[msgname]) {
+            Object.keys(this.callbacks[msgname]).forEach(token => {
+                this.callbacks[msgname][token](data)
+            })
+        }
+    }
+}
 
+// let ps=new PliPubSub();
+// let ps1=ps.subscribe('pay', data => {
+//     console.log('商家接到订单,准备开始制作'+data.name);
+// })
+// let ps2=ps.subscribe('pay', data => {
+//     console.log('骑手接到订单,准备开始取餐'+data.name);
+// })
+// // ps.unSubscribe('pay')
+// ps.publish('pay',{
+//     name:'西红柿鸡蛋',
+//     price:8
+// })
+function pySearch(value, type) {
+    let rname = '';
+    for (let key in pinyin) {
 
+        if (pinyin[key].includes(value)) {
+            if (type === -1) {
+                rname = key;
+            } else {
+                rname =
+                    key.substring(0, 1).toUpperCase() +
+                    key.substring(1, key.length);
+            }
+        }
+    }
+    return rname
+}
+function pliPinYin(value, type = 1) {
+    let name = '';
+    [...value].forEach(item => {
+        name = name + pySearch(item, type)
+    })
+    return name
+}
 
-// export{pliNowTime,pliColorRdm,pliCreateRdm,pliFilType,pliRgb_Hex,pliSleep}
 module.exports = {
     pliNowTime,
     pliColorRdm,
@@ -179,5 +299,10 @@ module.exports = {
     pliSleep,
     pliReverseStr,
     pliPalindrome,
-    pliTruncate
+    pliTruncate,
+    pliPinYin,
+    // 事件总线
+    PliEventBus,
+    // 发布订阅模式
+    PliPubSub
 }

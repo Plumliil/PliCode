@@ -1,14 +1,18 @@
 
+[TOC]
+
+
 <!-- ![](https://gitee.com/Plumliil/images/raw/master/MdPicture/author.png) -->
 
 <div
     align=center
      style="text-align-center"
     >
-    <img src="https://gitee.com/Plumliil/images/raw/master/MdPicture/20220104173804.png"  style="border-radius:50%">
+    <!-- <img src="https://gitee.com/Plumliil/images/raw/master/MdPicture/20220104173804.png"  > -->
+    <img src="https://raw.githubusercontent.com/Plumliil/images/main/img/logo.png" style="border-radius:50%"/>
 </div>
 <div align=center>
-    <a href="https://www.plumli.xyz" style="font-size:30px;font-weight:700;text-decoration: none;" title="PlumLi">PlumLi</a>
+    <a href="https://github.com/Plumliil" style="font-size:30px;font-weight:700;text-decoration: none;" title="PlumLi">PlumLi</a>
 </div>
 <!-- <h1 style="text-align:center">常用函数库</h1> -->
 
@@ -24,10 +28,6 @@
 const PliUtils = require('plumli/src/index');
 // 部分引用
 const {intro} = require('plumli/src/index');
-~~~
-或
-~~~javascript
-<script src="./node_modules/plumli/dist/pliUtils.js"></script>
 ~~~
 ## 数组方法
 
@@ -714,4 +714,19 @@ console.log(PliUtils.pliFilType(file));
 //   compressed: [ '2102012001011)_49246.zip' ],
 //   other: []
 // }
+~~~
+
+### 文字转拼音
+#### 描述
+通过调用方法来获取返回的拼音
+#### 用法
+| # | 解释 |
+| :---: | :---: |
+语法 | `PliUtils.pliPinYin(value,type)`
+参数 | value:需要转化的文字</br>type:是否需要首字母大写，1 大写 -1 小写 默认为1首字母大写  
+返回值 | 返回生成的拼音
+#### 示例
+~~~javascript
+console.log(pliPinYin('你好啊!')); // NiHaoA
+console.log(pliPinYin('你好啊!',-1)); // nihaoa
 ~~~
