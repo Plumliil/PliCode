@@ -77,7 +77,8 @@ const {
     pliReverseStr,
     pliPalindrome,
     pliTruncate,
-    pliPinYin
+    pliPinYin,
+    pliLongestCommonPrefix
 } = require('./tools/tools');
 
 const PliUtils = {
@@ -123,6 +124,7 @@ const PliUtils = {
     pliPalindrome,
     pliTruncate,
     pliPinYin,
+    pliLongestCommonPrefix,
     // intro
     intro
 }

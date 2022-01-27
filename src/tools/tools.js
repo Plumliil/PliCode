@@ -289,7 +289,23 @@ function pliPinYin(value, type = 1) {
     })
     return name
 }
-
+// 最长公共前缀
+function pliLongestCommonPrefix (strs) {
+    if (strs.length === 1) return strs[0];
+    let ans = strs[0];
+    for (let i = 1; i < strs.length; i++) {
+        let j = 0;
+        for (; j < strs[0].length && j < strs[i].length; j++) {
+            if (strs[0][j] !== strs[i][j]) {
+                break
+            }
+        }
+        ans = ans.substring(0, j);
+        if (ans === '')
+            return ans;
+    }
+    return ans;
+};
 module.exports = {
     pliNowTime,
     pliColorRdm,
@@ -301,6 +317,7 @@ module.exports = {
     pliPalindrome,
     pliTruncate,
     pliPinYin,
+    pliLongestCommonPrefix,
     // 事件总线
     PliEventBus,
     // 发布订阅模式
