@@ -245,6 +245,17 @@ function pliFlat2(array) {
     }
     return result;
 }
+// 数组扁平化,第二个参数,扁平化层数 默认为一
+function pliFlat3(array,n=1) {
+    if (array === []) return [];
+    let result = [...array];
+    let num=0;
+    while (result.some(i => Array.isArray(i))) {
+        if(num===n) return result;
+        result = pliConcat([], ...result)
+    }
+    return result;
+}
 
 // pliChunk(array, size) 数组分块 size为分开后每个数组内元素个数 默认为 1 
 function pliChunk(array, size = 1) {
