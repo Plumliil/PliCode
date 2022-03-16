@@ -65,7 +65,8 @@ const {
     pliApply,
     pliBind,
     pliThrottle,
-    pliDebounce
+    pliDebounce,
+    pliShuffle
 } = require('./methods/methods');
 const {
     pliNowTime,
@@ -113,6 +114,7 @@ const PliUtils = {
     pliBind,
     pliThrottle,
     pliDebounce,
+    pliShuffle,
     // tools
     pliNowTime,
     pliColorRdm,

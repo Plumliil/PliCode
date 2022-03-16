@@ -61,6 +61,21 @@ function pliDebounce(callback, time) {
         }, time);
     }
 }
+
+// 洗牌
+function pliShuffle(nums){
+    let len=nums.length;
+    for(let i=0;i<len;i++){
+        let index=Math.floor(Math.random()*len);
+        [nums[i],nums[index]]=[nums[index],nums[i]];
+    }
+    return nums;
+}
+
+
+
+console.log(pliShuffle([1,2,3,4,5,6,7,8,9]));
+
 // 
 // export {
 //     pliCall,
@@ -76,5 +91,6 @@ module.exports={
     pliBind,
     pliCopy,
     pliThrottle,
-    pliDebounce
+    pliDebounce,
+    pliShuffle
 }
