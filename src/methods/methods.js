@@ -1,13 +1,19 @@
+const { ParamError } = require('../utils/errors')
+
 // 改变函数this的指向来执行函数
 // call函数封装
 function pliCall(fn, obj, ...args) {
-    if (obj === undefined || obj === null) {
-        obj = globalThis
+    try {
+        if (obj === undefined || obj === null) {
+            obj = globalThis
+        }
+        obj.temp = fn
+        let result = obj.temp(...args)
+        delete obj.temp
+        return result
+    } catch (error) {
+        return new ParamError('传入参数错误,需传入数组类型')
     }
-    obj.temp = fn
-    let result = obj.temp(...args)
-    delete obj.temp
-    return result
 }
 // apply函数
 function pliApply(fn, obj, args) {
@@ -63,18 +69,18 @@ function pliDebounce(callback, time) {
 }
 
 // 洗牌
-function pliShuffle(nums){
-    let len=nums.length;
-    for(let i=0;i<len;i++){
-        let index=Math.floor(Math.random()*len);
-        [nums[i],nums[index]]=[nums[index],nums[i]];
+function pliShuffle(nums) {
+    let len = nums.length;
+    for (let i = 0; i < len; i++) {
+        let index = Math.floor(Math.random() * len);
+        [nums[i], nums[index]] = [nums[index], nums[i]];
     }
     return nums;
 }
 
 
 
-console.log(pliShuffle([1,2,3,4,5,6,7,8,9]));
+console.log(pliShuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 
 // 
 // export {
@@ -85,7 +91,7 @@ console.log(pliShuffle([1,2,3,4,5,6,7,8,9]));
 //     PliThrottle,
 //     PliDebounce
 // }
-module.exports={
+module.exports = {
     pliCall,
     pliApply,
     pliBind,
