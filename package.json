@@ -1,8 +1,8 @@
 {
   "name": "plumli",
-  "version": "0.0.6",
+  "version": "0.1.1",
   "description": "Plumli Self Tool Library",
-  "main": "./dist/pliUtils.js",
+  "main": "./index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development --watch"
