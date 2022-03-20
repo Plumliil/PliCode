@@ -26,9 +26,9 @@
 
 ```javascript
 // 全部引用
-const PliUtils = require('plumli/src/index');
+const PliLib = require('plumli');
 // 部分引用
-const {intro} = require('plumli/src/index');
+const {intro} = require('plumli');
 ```
 
 ## 数组方法
@@ -43,7 +43,7 @@ const {intro} = require('plumli/src/index');
 
 | #   | 解释                                            |
 |:---:|:---------------------------------------------:|
-| 语法  | `PliUtils.pliMap(array, callback)`            |
+| 语法  | `PliLib.map(array, callback)`            |
 | 参数  | array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br> |
 | 返回值 | 返回新数组                                         |
 
@@ -51,7 +51,7 @@ const {intro} = require('plumli/src/index');
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-console.log(PliUtils.pliMap(arr, v => v * 2)); // [2,4,6,8,10]
+console.log(PliLib.map(arr, v => v * 2)); // [2,4,6,8,10]
 ```
 
 ### reduce()封装
@@ -64,7 +64,7 @@ console.log(PliUtils.pliMap(arr, v => v * 2)); // [2,4,6,8,10]
 
 | #   | 解释                                                                                                      |
 |:---:|:-------------------------------------------------------------------------------------------------------:|
-| 语法  | `PliUtils.pliReduce(array, callback, init)`                                                             |
+| 语法  | `PliLib.reduce(array, callback, init)`                                                             |
 | 参数  | array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>init:作为第一次调用 callback函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。 |
 | 返回值 | 函数累计处理的结果                                                                                               |
 
@@ -72,7 +72,7 @@ console.log(PliUtils.pliMap(arr, v => v * 2)); // [2,4,6,8,10]
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-console.log(PliUtils.pliReduce(arr, (t, v) => t + v, 0)); // 15
+console.log(PliLib.reduce(arr, (t, v) => t + v, 0)); // 15
 ```
 
 ### every()封装
@@ -86,7 +86,7 @@ console.log(PliUtils.pliReduce(arr, (t, v) => t + v, 0)); // 15
 
 | #   | 解释                                                   |
 |:---:|:----------------------------------------------------:|
-| 语法  | `PliUtils.pliEvery(array, callback)`                 |
+| 语法  | `PliLib.every(array, callback)`                 |
 | 参数  | array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>        |
 | 返回值 | 若全部满足条件返回true,否则返回false.若收到一个空数组，此方法在一切情况下都会返回 true。 |
 
@@ -94,8 +94,8 @@ console.log(PliUtils.pliReduce(arr, (t, v) => t + v, 0)); // 15
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-console.log(PliUtils.pliEvery(arr, v => v > 3)); // false
-console.log(PliUtils.pliEvery(arr, v => v > 0)); // true
+console.log(PliLib.every(arr, v => v > 3)); // false
+console.log(PliLib.every(arr, v => v > 0)); // true
 ```
 
 ### some()封装
@@ -109,7 +109,7 @@ console.log(PliUtils.pliEvery(arr, v => v > 0)); // true
 
 | #   | 解释                                                       |
 |:---:|:--------------------------------------------------------:|
-| 语法  | `PliUtils.pliEvery(array, callback)`                     |
+| 语法  | `PliLib.some(array, callback)`                     |
 | 参数  | array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br>            |
 | 返回值 | 数组中有至少一个元素通过回调函数的测试就会返回true；所有元素都没有通过回调函数的测试返回值才会为false。 |
 
@@ -117,8 +117,8 @@ console.log(PliUtils.pliEvery(arr, v => v > 0)); // true
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-console.log(PliUtils.pliSome(arr, v => v > 5)); // false
-console.log(PliUtils.pliSome(arr, v => v > 0)); // true
+console.log(PliLib.some(arr, v => v > 5)); // false
+console.log(PliLib.some(arr, v => v > 0)); // true
 ```
 
 ### filter()封装
@@ -131,7 +131,7 @@ console.log(PliUtils.pliSome(arr, v => v > 0)); // true
 
 | #   | 解释                                            |
 |:---:|:---------------------------------------------:|
-| 语法  | `PliUtils.pliFilter(array, callback)`         |
+| 语法  | `PliLib.filter(array, callback)`         |
 | 参数  | array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br> |
 | 返回值 | 返回新数组                                         |
 
@@ -139,7 +139,7 @@ console.log(PliUtils.pliSome(arr, v => v > 0)); // true
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-console.log(PliUtils.pliFilter(arr, v => v > 3)); // [4,5]
+console.log(PliLib.filter(arr, v => v > 3)); // [4,5]
 ```
 
 ### find()封装
@@ -152,7 +152,7 @@ console.log(PliUtils.pliFilter(arr, v => v > 3)); // [4,5]
 
 | #   | 解释                                            |
 |:---:|:---------------------------------------------:|
-| 语法  | `PliUtils.pliFind(array,callback)`            |
+| 语法  | `PliLib.find(array,callback)`            |
 | 参数  | array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br> |
 | 返回值 | 满足回调函数条件返回满足条件的第一个元素，否则返回undefined            |
 
@@ -160,7 +160,7 @@ console.log(PliUtils.pliFilter(arr, v => v > 3)); // [4,5]
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-console.log(PliUtils.pliFind(arr, v => v > 3)); // 4
+console.log(PliLib.find(arr, v => v > 3)); // 4
 ```
 
 ### findIndex()封装
@@ -173,7 +173,7 @@ console.log(PliUtils.pliFind(arr, v => v > 3)); // 4
 
 | #   | 解释                                            |
 |:---:|:---------------------------------------------:|
-| 语法  | `PliUtils.pliFindIndex(array,callback)`       |
+| 语法  | `PliLib.findIndex(array,callback)`       |
 | 参数  | array:需要操作的数组</br>callback:对原数组进行操作的回调函数</br> |
 | 返回值 | 方法返回数组中满足提供的测试函数条件的第一个元素的索引，否则返回 -1           |
 
@@ -181,7 +181,7 @@ console.log(PliUtils.pliFind(arr, v => v > 3)); // 4
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-console.log(PliUtils.pliFind(arr, v => v > 3)); // 3
+console.log(PliLib.findIndex(arr, v => v > 3)); // 3
 ```
 
 ### slice()封装
@@ -194,7 +194,7 @@ console.log(PliUtils.pliFind(arr, v => v > 3)); // 3
 
 | #   | 解释                                                            |
 |:---:|:-------------------------------------------------------------:|
-| 语法  | `PliUtils.pliSlice(array,begin,end)`                          |
+| 语法  | `PliLib.Slice(array,begin,end)`                          |
 | 参数  | array:需要操作的数组</br>begin:开始截取的元素索引</br>end:结束截取的元素索引(不包含)</br> |
 | 返回值 | 一个含有被提取元素的新数组。                                                |
 
@@ -202,7 +202,7 @@ console.log(PliUtils.pliFind(arr, v => v > 3)); // 3
 
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-console.log(PliUtils.pliSlice(arr, 1,3)); // [2，3]
+console.log(PliLib.Slice(arr, 1,3)); // [2，3]
 ```
 
 ### concat()封装
@@ -215,7 +215,7 @@ console.log(PliUtils.pliSlice(arr, 1,3)); // [2，3]
 
 | #   | 解释                                            |
 |:---:|:---------------------------------------------:|
-| 语法  | `PliUtils.pliConcat(array,array2,array3,...)` |
+| 语法  | `PliLib.concat(array,array2,array3,...)` |
 | 参数  | array为需要操作的数组                                 |
 | 返回值 | 一个含有被提取元素的新数组。                                |
 
@@ -225,7 +225,7 @@ console.log(PliUtils.pliSlice(arr, 1,3)); // [2，3]
 let arr = [1, 2, 3, 4];
 let arr2 = ['a', 'b', 'c'];
 let arr3 = [5, 6, 7];
-console.log(PliUtils.pliConcat(arr, arr2, arr3));// [1, 2, 3, 4,'a', 'b', 'c', 5, 6, 7,]
+console.log(PliLib.concat(arr, arr2, arr3));// [1, 2, 3, 4,'a', 'b', 'c', 5, 6, 7,]
 ```
 
 ### 数组最大值
@@ -238,7 +238,7 @@ console.log(PliUtils.pliConcat(arr, arr2, arr3));// [1, 2, 3, 4,'a', 'b', 'c', 5
 
 | #   | 解释                                      |
 |:---:|:---------------------------------------:|
-| 语法  | `PliUtils.pliGetMax(array,value)`       |
+| 语法  | `PliLib.getMax(array,value)`       |
 | 参数  | array:需要操作的数组</br>value:数组内某个对象的元素(非必要) |
 | 返回值 | 返回最大值元素                                 |
 
@@ -252,8 +252,8 @@ let arr = [
 ]
 let arr1 = [3, 1, 5, 2, 4];
 
-console.log(pliUtils.pliGetMax(arr,'click')); // {"name":"css","price":173,"click":513}
-console.log(pliUtils.pliGetMax(arr1)); // 5
+console.log(PliLib.getMax(arr,'click')); // {"name":"css","price":173,"click":513}
+console.log(PliLib.getMax(arr1)); // 5
 ```
 
 ### 数组最小值
@@ -266,7 +266,7 @@ console.log(pliUtils.pliGetMax(arr1)); // 5
 
 | #   | 解释                                      |
 |:---:|:---------------------------------------:|
-| 语法  | `PliUtils.pliGetMin(array,value)`       |
+| 语法  | `PliLib.getMin(array,value)`       |
 | 参数  | array:需要操作的数组</br>value:数组内某个对象的元素(非必要) |
 | 返回值 | 返回最小值元素                                 |
 
@@ -280,8 +280,8 @@ let arr = [
 ]
 let arr1 = [3, 1, 5, 2, 4];
 
-console.log(pliUtils.pliGetMin(arr,'click')); // {"name":"node","price":235"click":200}
-console.log(pliUtils.pliGetMin(arr1)); // 1
+console.log(PliLib.getMin(arr,'click')); // {"name":"node","price":235"click":200}
+console.log(PliLib.getMin(arr1)); // 1
 ```
 
 ### 数组排序
@@ -294,7 +294,7 @@ console.log(pliUtils.pliGetMin(arr1)); // 1
 
 | #   | 解释                                                                    |
 |:---:|:---------------------------------------------------------------------:|
-| 语法  | `PliUtils.pliSort(array,value,order)`                                 |
+| 语法  | `PliLib.sort(array,value,order)`                                 |
 | 参数  | array:需要操作的数组</br>value:数组内某个对象的元素</br>order:排序顺序，1 为升序，-1 为降序，默认为 升序 |
 | 返回值 | 返回排序后的数组                                                              |
 
@@ -308,22 +308,22 @@ let arr = [
 ];
 let arr1 = [3, 1, 5, 2, 4];
 
-console.log(pliSort(arr, 'price'));
+console.log(PliLib.sort(arr, 'price'));
 // [
 //   {"name":"js","price":173,"click":312},
 //   {"name":"node","price":200,"click":200},
 //   {"name":"css","price":235,"click":513}
 // ]
-console.log(pliSort(arr, 'price', -1));
+console.log(PliLib.sort(arr, 'price', -1));
 // [
 //  {"name":"js","price":235,"click":312},
 //  {"name":"node","price":200,"click":200},
 //  {"name":"css","price":173,"click":513}
 // ]
 
-console.log(pliSort(arr1, null, -1));
+console.log(PliLib.sort(arr1, null, -1));
 // [5,4,3,2,1]
-console.log(pliSort(arr1));
+console.log(PliLib.sort(arr1));
 // [1,2,3,4,5]
 ```
 
@@ -337,7 +337,7 @@ console.log(pliSort(arr1));
 
 | #   | 解释                                  |
 |:---:|:-----------------------------------:|
-| 语法  | `PliUtils.pliUnique(array)`         |
+| 语法  | `PliLib.unique(array)`         |
 | 参数  | array:需要操作的数组</br>                  |
 | 返回值 | 方法返回数组中满足提供的测试函数条件的第一个元素的索引，否则返回 -1 |
 
@@ -345,7 +345,7 @@ console.log(pliSort(arr1));
 
 ```javascript
 let arr = [1, 3, 4, 3, 5, 3];
-console.log(PliUtils.pliUnique(arr)); // [1,3,4,5]
+console.log(PliLib.unique(arr)); // [1,3,4,5]
 ```
 
 ### 数组分块
@@ -358,7 +358,7 @@ console.log(PliUtils.pliUnique(arr)); // [1,3,4,5]
 
 | #   | 解释                         |
 |:---:|:--------------------------:|
-| 语法  | `PliUtils.pliChunk(array)` |
+| 语法  | `PliLib.chunk(array)` |
 | 参数  | array:需要操作的数组</br>         |
 | 返回值 | 返回分块后的数组                   |
 
@@ -366,10 +366,10 @@ console.log(PliUtils.pliUnique(arr)); // [1,3,4,5]
 
 ```javascript
 let arr = [1, 3, 4, 3, 5, 3, 2];
-console.log(PliUtils.pliChunk(arr)); // [[1],[3],[4],[3],[5],[3],[2]] 
-console.log(PliUtils.pliChunk(arr, 1)); // [[1],[3],[4],[3],[5],[3],[2]] 
-console.log(PliUtils.pliChunk(arr, 3)); // [[1,3,4],[3,5,3],[2]]
-console.log(PliUtils.pliChunk(arr, 4)); // [[1,3,4,3],[5,3,2]]
+console.log(PliLib.chunk(arr)); // [[1],[3],[4],[3],[5],[3],[2]] 
+console.log(PliLib.chunk(arr, 1)); // [[1],[3],[4],[3],[5],[3],[2]] 
+console.log(PliLib.chunk(arr, 3)); // [[1,3,4],[3,5,3],[2]]
+console.log(PliLib.chunk(arr, 4)); // [[1,3,4,3],[5,3,2]]
 ```
 
 ### 数组元素删除
@@ -382,7 +382,7 @@ console.log(PliUtils.pliChunk(arr, 4)); // [[1,3,4,3],[5,3,2]]
 
 | #   | 解释                                                                                          |
 |:---:|:-------------------------------------------------------------------------------------------:|
-| 语法  | `PliUtils.pliPull(array,value,value2,...)`</br>`PliUtils.pliPull(array,[value,value2,...])` |
+| 语法  | `PliLib.pull(array,value,value2,...)`</br>`PliLib.pullAll(array,[value,value2,...])` |
 | 参数  | array:需要操作的数组</br>value:需要删除的元素                                                             |
 | 返回值 | 返回删除元素组成的的数组                                                                                |
 
@@ -391,8 +391,8 @@ console.log(PliUtils.pliChunk(arr, 4)); // [[1,3,4,3],[5,3,2]]
 ```javascript
 let arr = [1, 2, 3, 4, 'a', 'b', 'c'];
 
-console.log(PliUtils.pliPull(arr, 2, 4, 'b', 10,'d')); // [2,4,"b"]
-console.log(PliUtils.pliPullAll(arr, [2, 4, 'b', 10,'d'])); // [2,4,"b"]
+console.log(PliLib.pull(arr, 2, 4, 'b', 10,'d')); // [2,4,"b"]
+console.log(PliLib.pullAll(arr, [2, 4, 'b', 10,'d'])); // [2,4,"b"]
 ```
 
 ### 获取数组部分元素
@@ -405,7 +405,7 @@ console.log(PliUtils.pliPullAll(arr, [2, 4, 'b', 10,'d'])); // [2,4,"b"]
 
 | #   | 解释                                                                |
 |:---:|:-----------------------------------------------------------------:|
-| 语法  | `PliUtils.pliDrop(array, count, lr)`                              |
+| 语法  | `PliLib.drop(array, count, lr)`                              |
 | 参数  | array:需要操作的数组</br>count:需要过滤的元素个数 默认为1</br>lr:选择左右 1 为左 -1 为右默认为右 |
 | 返回值 | 得到一个新数组                                                           |
 
@@ -414,8 +414,8 @@ console.log(PliUtils.pliPullAll(arr, [2, 4, 'b', 10,'d'])); // [2,4,"b"]
 ```javascript
 let arr = [1, 3, 5, 7];
 
-console.log(PliUtils.pliDrop(arr, 2)); // [5, 7]
-console.log(PliUtils.pliDrop(arr, 2, -1)); // [1, 3]
+console.log(PliLib.drop(arr, 2)); // [5, 7]
+console.log(PliLib.drop(arr, 2, -1)); // [1, 3]
 ```
 
 ### 获取两数组间的差异
@@ -428,7 +428,7 @@ console.log(PliUtils.pliDrop(arr, 2, -1)); // [1, 3]
 
 | #   | 解释                                      |
 |:---:|:---------------------------------------:|
-| 语法  | `PliUtils.pliDifference(array, array2)` |
+| 语法  | `PliLib.difference(array, array2)` |
 | 参数  | array:需要操作的第一个数组</br>array2:需要操作的第二个数组  |
 | 返回值 | 得到一个新数组                                 |
 
@@ -438,7 +438,7 @@ console.log(PliUtils.pliDrop(arr, 2, -1)); // [1, 3]
 let arr = [1, 3, 5, 7];
 let arr2 = [2, 3, 5, 8];
 
-console.log(PliUtils.pliDifference(arr, arr2)); // [1, 7]
+console.log(PliLib.difference(arr, arr2)); // [1, 7]
 ```
 
 ### 数组扁平化
@@ -451,7 +451,7 @@ console.log(PliUtils.pliDifference(arr, arr2)); // [1, 7]
 
 | #   | 解释                        |
 |:---:|:-------------------------:|
-| 语法  | `PliUtils.pliFlat(array)` |
+| 语法  | `PliLib.flat(array)` |
 | 参数  | array:需要操作的数组             |
 | 返回值 | 得到一个新数组                   |
 
@@ -460,7 +460,7 @@ console.log(PliUtils.pliDifference(arr, arr2)); // [1, 7]
 ```javascript
 let arr = [1, 2, [3, 4, [5, 6, [7, 8, [9]]]]];
 
-console.log(PliUtils.pliFlat(arr)); // [1,2,3,4,5,6,7,8,9]
+console.log(PliLib.flat(arr)); // [1,2,3,4,5,6,7,8,9]
 ```
 
 <hr>
@@ -477,7 +477,7 @@ console.log(PliUtils.pliFlat(arr)); // [1,2,3,4,5,6,7,8,9]
 
 | #   | 解释                                     |
 |:---:|:--------------------------------------:|
-| 语法  | `PliUtils.pliNewInstance(Fn,...args))` |
+| 语法  | `PliLib.newInstance(Fn,...args))` |
 | 参数  | Fn:构造函数</br>args:传入的参数                 |
 | 返回值 | 返回实例化后的对象                              |
 
@@ -489,7 +489,7 @@ function Person(name, age) {
   this.age = age;
   return this.name + this.age
 }
-let p = pliNewInstance(Person, 'zs', 21);
+let p = PliLib.newInstance(Person, 'zs', 21);
 ```
 
 ### instanceOf 方法
@@ -502,7 +502,7 @@ let p = pliNewInstance(Person, 'zs', 21);
 
 | #   | 解释                                         |
 |:---:|:------------------------------------------:|
-| 语法  | `PliUtils.pliInstanceOf(obj,constructor))` |
+| 语法  | `PliLib.instanceOf(obj,constructor))` |
 | 参数  | obj:某个实例对象</br>constructor:某个构造函数          |
 | 返回值 | 返回实例化后的对象                                  |
 
@@ -515,10 +515,10 @@ function Person(name, age) {
   return this.name + this.age
 }
 
-let p = new Person('pli', 22)
-console.log(PliUtils.pliInstanceOf(p, Person)); // true
-console.log(PliUtils.pliInstanceOf({}, Person)); // false
-console.log(PliUtils.pliInstanceOf(Person, Object)); // true
+let p = new Person('', 22)
+console.log(PliLib.instanceOf(p, Person)); // true
+console.log(PliLib.instanceOf({}, Person)); // false
+console.log(PliLib.instanceOf(Person, Object)); // true
 ```
 
 ### 对象合并
@@ -531,7 +531,7 @@ console.log(PliUtils.pliInstanceOf(Person, Object)); // true
 
 | #   | 解释                              |
 |:---:|:-------------------------------:|
-| 语法  | `PliUtils.pliMergeObj(...objs)` |
+| 语法  | `PliLib.mergeObj(...objs)` |
 | 参数  | obj:需要合并的对象                     |
 | 返回值 | 返回合并后后的对象                       |
 
@@ -541,7 +541,7 @@ console.log(PliUtils.pliInstanceOf(Person, Object)); // true
 let obj1 = { person: [{ name: 'zs' }, { name: 'ls' }], pos: 'hn' }
 let obj2 = { person: { name: 'ww' }, pos: 'bj', sex: '男' }
 
-console.log(PliUtils.pliMergeObj(obj1,obj2));
+console.log(PliLib.mergeObj(obj1,obj2));
 // {
 //     "person":[{"name":"zs"},{"name":"ls"},{"name":"ww"}],
 //     "pos":["hn","bj"],
@@ -559,7 +559,7 @@ console.log(PliUtils.pliMergeObj(obj1,obj2));
 
 | #   | 解释                      |
 |:---:|:-----------------------:|
-| 语法  | `PliUtils.pliCopy(obj)` |
+| 语法  | `PliLib.copy(obj)` |
 | 参数  | obj:需要拷贝的对象             |
 | 返回值 | 返回拷贝后的新对象               |
 
@@ -567,12 +567,11 @@ console.log(PliUtils.pliMergeObj(obj1,obj2));
 
 ```javascript
 let obj = { person: [{ name: 'zs' }, { name: 'ls' }], pos: 'hn' }
-let res = pliCopy(obj);
+let res = PliLib.copy(obj);
 res['person'][1]['name'] = 'ww';
 console.log(res); // {"person":[{"name":"zs"},{"name":"ww"}],"pos":"hn"}
 console.log(obj); // {"person":[{"name":"zs"},{"name":"ls"}],"pos":"hn"}
 ```
-
 <hr>
 
 ## 函数封装
@@ -587,7 +586,7 @@ console.log(obj); // {"person":[{"name":"zs"},{"name":"ls"}],"pos":"hn"}
 
 | #   | 解释                                            |
 |:---:|:---------------------------------------------:|
-| 语法  | `PliUtils.pliCall(fn,obj,value)`              |
+| 语法  | `PliLib.call(fn,obj,value)`              |
 | 参数  | fn:调用的函数</br>obj:this的指向</br>value:传入的参数</br> |
 | 返回值 | 返回函数调用后的结果                                    |
 
@@ -600,7 +599,7 @@ function add(a,b){
 let obj={
     c:5
 }
-PliUtils.pliCall(add,obj,5,5); // 15
+PliLib.call(add,obj,5,5); // 15
 ```
 
 ### apply()封装
@@ -613,7 +612,7 @@ PliUtils.pliCall(add,obj,5,5); // 15
 
 | #   | 解释                                                     |
 |:---:|:------------------------------------------------------:|
-| 语法  | `PliUtils.pliApply(fn,obj,value)`                      |
+| 语法  | `PliLib.apply(fn,obj,value)`                      |
 | 参数  | fn:调用的函数</br>obj:this的指向</br>value:传入的参数(只能是数组形式)</br> |
 | 返回值 | 返回函数调用后的结果                                             |
 
@@ -626,7 +625,7 @@ function add(a,b){
 let obj={
     c:5
 }
-PliUtils.pliApply(add,obj,[5,5]); // 15
+PliLib.apply(add,obj,[5,5]); // 15
 ```
 
 ### bind()封装
@@ -639,7 +638,7 @@ PliUtils.pliApply(add,obj,[5,5]); // 15
 
 | #   | 解释                                                                    |
 |:---:|:---------------------------------------------------------------------:|
-| 语法  | `PliUtils.pliBind(fn,obj,value)(value1)`                              |
+| 语法  | `PliLib.bind(fn,obj,value)(value1)`                              |
 | 参数  | fn:调用的函数</br>obj:this的指向</br>value:传入的参数</br>value1:后续传入的参数(非必要)</br> |
 | 返回值 | 返回函数调用后的结果                                                            |
 
@@ -652,8 +651,8 @@ function add(a,b){
 let obj={
     c:5
 }
-PliUtils.pliBind(add,obj,5,5)(); // 15
-PliUtils.pliBind(add,obj,5)(5); // 15
+PliLib.bind(add,obj,5,5)(); // 15
+PliLib.bind(add,obj,5)(5); // 15
 ```
 
 ### 节流
@@ -666,7 +665,7 @@ PliUtils.pliBind(add,obj,5)(5); // 15
 
 | #   | 解释                                    |
 |:---:|:-------------------------------------:|
-| 语法  | `PliUtils.pliThrottle(callback,wait)` |
+| 语法  | `PliLib.throttle(callback,wait)` |
 | 参数  | callback:需要执行的函数</br>wait:等待的时间</br>  |
 | 返回值 | 返回一个执行函数                              |
 
@@ -674,7 +673,7 @@ PliUtils.pliBind(add,obj,5)(5); // 15
 
 ```javascript
 window.addEventListener('scroll',
-  pliUtils.pliThrottle(function () {
+  PliLib.throttle(function () {
     console.log(window);
   }, 1000)
 )
@@ -690,7 +689,7 @@ window.addEventListener('scroll',
 
 | #   | 解释                                    |
 |:---:|:-------------------------------------:|
-| 语法  | `PliUtils.pliDebounce(callback,time)` |
+| 语法  | `PliLib.debounce(callback,time)` |
 | 参数  | callback:需要执行的函数</br>time:等待的时间</br>  |
 | 返回值 | 返回函数调用后的结果                            |
 
@@ -699,9 +698,9 @@ window.addEventListener('scroll',
 ```html
 <input type="text">
 <script>
-    pliUtils.intro()
+    PliLib.intro()
     document.querySelector('input').onkeydown =
-        pliUtils.pliDebounce(function (e) {
+        PliLib.debounce(function (e) {
             console.log(e.keyCode);
         }, 1000)
 </script>
@@ -719,7 +718,7 @@ window.addEventListener('scroll',
 
 | #   | 解释                          |
 |:---:|:---------------------------:|
-| 语法  | `PliUtils.pliTypeOf(value)` |
+| 语法  | `PliLib.typeOf(value)` |
 | 参数  | value:需要判断的值                |
 | 返回值 | 返回获取对应的数据类型                 |
 
@@ -730,10 +729,10 @@ let a = {},
     b = [],
     c = null,
     d;
-console.log(PliUtils.pliTypeOf(a)) // object
-console.log(PliUtils.pliTypeOf(b)) // array
-console.log(PliUtils.pliTypeOf(c)) // null
-console.log(PliUtils.pliTypeOf(d)) // undefined
+console.log(PliLib.typeOf(a)) // object
+console.log(PliLib.typeOf(b)) // array
+console.log(PliLib.typeOf(c)) // null
+console.log(PliLib.typeOf(d)) // undefined
 ```
 
 ### 获取当前时间
@@ -746,15 +745,15 @@ console.log(PliUtils.pliTypeOf(d)) // undefined
 
 | #   | 解释                          |
 |:---:|:---------------------------:|
-| 语法  | `PliUtils.pliNowTime(type)` |
+| 语法  | `PliLib.nowTime(type)` |
 | 参数  | type:获取时间的格式 目前支持20种不同形式的时间 |
 | 返回值 | 返回当前的时间                     |
 
 #### 示例
 
 ```javascript
-console.log(PliUtils.pliNowTime('yyyy-mm-dd h:m:s')); // 2021-11-4 14:30:33
-console.log(PliUtils.pliNowTime('yyyy/mm/dd h:m')); // 2021/11/4 14:30
+console.log(PliLib.nowTime('yyyy-mm-dd h:m:s')); // 2021-11-4 14:30:33
+console.log(PliLib.nowTime('yyyy/mm/dd h:m')); // 2021/11/4 14:30
 ```
 
 ### 随机数生成
@@ -767,15 +766,15 @@ console.log(PliUtils.pliNowTime('yyyy/mm/dd h:m')); // 2021/11/4 14:30
 
 | #   | 解释                                           |
 |:---:|:--------------------------------------------:|
-| 语法  | `PliUtils.pliCreateRdm(min,max,Integer)`     |
+| 语法  | `PliLib.createRdm(min,max,Integer)`     |
 | 参数  | min:最小值,max:最大值,Integer:是否为整数 默认值为 1 非整数为 -1 |
 | 返回值 | 返回当前的时间                                      |
 
 #### 示例
 
 ```javascript
-console.log(PliUtils.pliCreateRdm(1,100)); // 80
-console.log(PliUtils.pliCreateRdm(1,100,-1)); // 69.94
+console.log(PliLib.createRdm(1,100)); // 80
+console.log(PliLib.createRdm(1,100,-1)); // 69.94
 ```
 
 ### 随机颜色生成
@@ -788,15 +787,15 @@ console.log(PliUtils.pliCreateRdm(1,100,-1)); // 69.94
 
 | #   | 解释                            |
 |:---:|:-----------------------------:|
-| 语法  | `PliUtils.pliColorRdm(type)`  |
+| 语法  | `PliLib.colorRdm(type)`  |
 | 参数  | type:获取颜色的格式有rgb和hex两种，默认为rgb |
 | 返回值 | 返回颜色的值                        |
 
 #### 示例
 
 ```javascript
-console.log(PliUtils.pliColorRdm()); // (153,17,88)
-console.log(PliUtils.pliColorRdm('hex')); // #DF80CB
+console.log(PliLib.colorRdm()); // (153,17,88)
+console.log(PliLib.colorRdm('hex')); // #DF80CB
 ```
 
 ### 颜色格式转换
@@ -809,7 +808,7 @@ console.log(PliUtils.pliColorRdm('hex')); // #DF80CB
 
 | #    | 解释                                              |
 |:----:|:-----------------------------------------------:|
-| 语法   | `PliUtils.pliRgb_Hex(data,type)`                |
+| 语法   | `PliLib.Rgb_Hex(data,type)`                |
 | 参数   | data:转换前的颜色数据</br>type:获取颜色的格式有rgb和hex两种，默认为rgb |
 | 返回值  | 返回转换后的颜色值                                       |
 | 支持格式 | rgb:(255,255,255)</br>hex:#FFFFFF               |
@@ -817,8 +816,8 @@ console.log(PliUtils.pliColorRdm('hex')); // #DF80CB
 #### 示例
 
 ```javascript
-console.log(PliUtils.pliRgb_Hex('(255,255,255)','hex')); // #FFFFFF
-console.log(PliUtils.pliRgb_Hex('#FFFFFF','rgb')); // (255,255,255)
+console.log(PliLib.Rgb_Hex('(255,255,255)','hex')); // #FFFFFF
+console.log(PliLib.Rgb_Hex('#FFFFFF','rgb')); // (255,255,255)
 ```
 
 ### 字符串回文
@@ -831,7 +830,7 @@ console.log(PliUtils.pliRgb_Hex('#FFFFFF','rgb')); // (255,255,255)
 
 | #   | 解释                            |
 |:---:|:-----------------------------:|
-| 语法  | `PliUtils.pliPalindrome(str)` |
+| 语法  | `PliLib.palindrome(str)` |
 | 参数  | str:需要判断的字符串                  |
 | 返回值 | 如果是回文字符串则返回true，反之返回false     |
 
@@ -841,8 +840,8 @@ console.log(PliUtils.pliRgb_Hex('#FFFFFF','rgb')); // (255,255,255)
 let str = '12321';
 let str2 = '12345';
 
-console.log(PliUtils.pliPalindrome(str)); // true
-console.log(PliUtils.pliPalindrome(str2)); // false
+console.log(PliLib.palindrome(str)); // true
+console.log(PliLib.palindrome(str2)); // false
 ```
 
 ### 字符串倒序
@@ -855,7 +854,7 @@ console.log(PliUtils.pliPalindrome(str2)); // false
 
 | #   | 解释                            |
 |:---:|:-----------------------------:|
-| 语法  | `PliUtils.pliReverseStr(str)` |
+| 语法  | `PliLib.reverseStr(str)` |
 | 参数  | str:需要进行倒序的字符串                |
 | 返回值 | 返回传入字符串的倒序字符串                 |
 
@@ -864,7 +863,7 @@ console.log(PliUtils.pliPalindrome(str2)); // false
 ```javascript
 let str = '倒叙字符串';
 
-console.log(PliUtils.pliReverseStr(str)); // 串符字序倒
+console.log(PliLib.reverseStr(str)); // 串符字序倒
 ```
 
 ### 字符串截取
@@ -877,7 +876,7 @@ console.log(PliUtils.pliReverseStr(str)); // 串符字序倒
 
 | #   | 解释                              |
 |:---:|:-------------------------------:|
-| 语法  | `PliUtils.pliTruncate(str,num)` |
+| 语法  | `PliLib.truncate(str,num)` |
 | 参数  | str:需要进行截取的字符串</br>num:截取的字数    |
 | 返回值 | 返回截取后的字符串                       |
 
@@ -886,7 +885,7 @@ console.log(PliUtils.pliReverseStr(str)); // 串符字序倒
 ```javascript
 let str = '字符串截取字符串截取字符串截取字符串截取';
 
-console.log(PliUtils.pliTruncate(str,9)); // 字符串截取字符串截...
+console.log(PliLib.truncate(str,9)); // 字符串截取字符串截...
 ```
 
 ### 文件分类
@@ -899,7 +898,7 @@ console.log(PliUtils.pliTruncate(str,9)); // 字符串截取字符串截...
 
 | #   | 解释                          |
 |:---:|:---------------------------:|
-| 语法  | `PliUtils.pliFilType(file)` |
+| 语法  | `PliLib.filType(file)` |
 | 参数  | file:包含文件链接的数组              |
 | 返回值 | 返回分类后的链接                    |
 
@@ -918,7 +917,7 @@ let file = [
     '2102012001011)_49246.zip',
     '460101198309075187.gif',
 ]
-console.log(PliUtils.pliFilType(file));
+console.log(PliLib.filType(file));
 // {
 //   video: [ '130201198409273008.mp4', '210201200101149246.m4v' ],
 //   audio: [ '120201197411173093.mp3' ],
@@ -947,13 +946,13 @@ console.log(PliUtils.pliFilType(file));
 
 | #   | 解释                                                    |
 |:---:|:-----------------------------------------------------:|
-| 语法  | `PliUtils.pliPinYin(value,type)`                      |
+| 语法  | `PliLib.pinYin(value,type)`                      |
 | 参数  | value:需要转化的文字</br>type:是否需要首字母大写，1 大写 -1 小写 默认为1首字母大写 |
 | 返回值 | 返回生成的拼音                                               |
 
 #### 示例
 
 ```javascript
-console.log(pliPinYin('你好啊!')); // NiHaoA
-console.log(pliPinYin('你好啊!',-1)); // nihaoa
+console.log(PliLib.pinYin('你好啊!')); // NiHaoA
+console.log(PliLib.pinYin('你好啊!',-1)); // nihaoa
 ```
