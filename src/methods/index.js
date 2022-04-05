@@ -71,7 +71,7 @@ function shuffle(nums){
     }
     return nums;
 }
-function shuffle1(arr) {
+function OoO(arr) {
     arr.sort(()=>{
         return Math.random()-0.5;
     })
