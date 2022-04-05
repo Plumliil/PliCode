@@ -71,7 +71,12 @@ function shuffle(nums){
     }
     return nums;
 }
-
+function shuffle1(arr) {
+    arr.sort(()=>{
+        return Math.random()-0.5;
+    })
+    return arr;
+}
 
 
 module.exports={
