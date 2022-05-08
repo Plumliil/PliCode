@@ -4,6 +4,7 @@ node_modules/
 .vscode
 package-lock
 node_modules
+webpack.config.js
 # local env files
 .env.local
 .env.*.local
@@ -17,6 +18,7 @@ pnpm-debug.log*
 # Editor directories and files
 .idea
 .vscode
+.git
 *.suo
 *.ntvs*
 *.njsproj
