@@ -290,6 +290,43 @@ function pinYin(value, type = 1) {
     return name
 }
 
+// 本地储存
+
+class MyLocalStorage {
+    constructor() { }
+    static get(key) {
+        let value = localStorage.getItem(key);
+        if (!value)
+            return null;
+        let valueArr = value.split("|");
+        console.log(key, valueArr.length);
+        if (valueArr.length && valueArr.length > 1) {
+            if (this.time > parseInt(valueArr[1])) {
+                console.log("缓存到期");
+                localStorage.removeItem(key);
+                console.log(this.time, parseInt(valueArr[1]));
+                return "";
+            }
+            else {
+                return JSON.parse(valueArr[0]);
+            }
+        }
+        else {
+            return JSON.parse(value);
+        }
+    }
+    static set(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+    static cacheSet(key, value, delay = 3000 * 10) {
+        value = JSON.stringify(value) + "|" + (this.time + delay);
+        localStorage.setItem(key, value);
+        console.log("已经把" + key + "存入缓存,过期时间是" + (this.time + delay));
+    }
+}
+MyLocalStorage.time = new Date().getTime();
+
+
 module.exports = {
     nowTime,
     colorRdm,
@@ -304,5 +341,6 @@ module.exports = {
     // 事件总线
     EventBus,
     // 发布订阅模式
-    PubSub
+    PubSub,
+    MyLocalStorage
 }

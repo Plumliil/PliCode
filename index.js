@@ -55,7 +55,8 @@ const {
     // 事件总线
     EventBus,
     // 发布订阅模式
-    PubSub
+    PubSub,
+    MyLocalStorage
 } = require('./src/tools');
 
 const PliLib = {
